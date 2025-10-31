@@ -1,0 +1,78 @@
+.modal {
+  :global {
+    .ant-modal-content {
+      padding: 30px 42px 27px 43px;
+      border-radius: 10px;
+    }
+    .ant-modal-footer {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      .ant-btn {
+        margin-inline-start: 0 !important;
+        width: 140px;
+        height: 46px;
+        border-radius: 6px;
+      }
+      .ant-btn-default {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #0066b3;
+        gap: 4px;
+        .ant-btn-icon {
+          width: 24px;
+          height: 24px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        img,
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+      .ant-btn-primary {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 22px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 90px;
+  margin-bottom: 23px;
+  text-align: center;
+  svg {
+    height: 100%;
+    width: auto;
+  }
+}
+.title {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #081233;
+  margin-bottom: 13px;
+}
+.message {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #757575;
+  margin-bottom: 27px;
+}

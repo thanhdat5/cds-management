@@ -1,0 +1,58 @@
+.formItem {
+  height: 53.34px;
+  border-radius: 56px;
+  position: relative;
+  margin-bottom: 45.66px;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(94.78deg, #0639a3 0.42%, #059be5 60.61%);
+    border-radius: inherit;
+    --mask: conic-gradient(transparent 0deg, #000 0deg);
+    mask: var(--mask) content-box exclude, var(--mask);
+  }
+  :global {
+    .ant-form-item-explain-error {
+      font-family: "ABeeZee", sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+      color: #994b6a;
+      padding-left: 38px;
+      margin-top: 14.66px;
+    }
+    .ant-input-password-icon {
+      color: #fff !important;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .ant-input::placeholder {
+      font-family: "ABeeZee", sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+      color: #465b7f;
+      opacity: 1;
+    }
+  }
+}
+.input {
+  box-shadow: none;
+  height: 53.34px;
+  border: 0 !important;
+  border-radius: 56px;
+  background-color: transparent !important;
+  padding-left: 40px;
+  padding-right: 20px;
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #ffffff;
+}

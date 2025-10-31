@@ -1,0 +1,20 @@
+.table {
+  :global {
+    .ant-table-cell {
+      &.padding-0 {
+        padding: 0;
+      }
+      &.with-bg {
+        background-color: #f6f7f9;
+      }
+    }
+  }
+}
+
+:global {
+  .ant-vertical-top {
+    .ant-table-tbody .ant-table-cell {
+      vertical-align: top;
+    }
+  }
+}

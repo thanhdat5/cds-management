@@ -1,0 +1,26 @@
+.card {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 14px;
+  padding: 25px 30px;
+  @media (max-width: 1920px) {
+    padding: 16px 30px;
+  }
+  @media (max-width: 1199px) {
+    padding: 16px 20px;
+  }
+}
+.cardHeader {
+  margin-bottom: 10px;
+}
+.cardTitle {
+  font-family: "Barlow", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #464255;
+  @media (max-width: 1199px) {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}

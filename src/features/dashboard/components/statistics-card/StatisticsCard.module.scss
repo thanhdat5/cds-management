@@ -1,0 +1,60 @@
+.card {
+  flex: 1;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 14px;
+  padding: 37px 0 22px 61px;
+  height: 100%;
+  @media (max-width: 1920px) {
+    padding: 16px 10px 20px 20px;
+  }
+}
+.value {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  font-family: "Barlow", sans-serif;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 55px;
+  color: #464255;
+  margin-bottom: 8px;
+  @media (max-width: 1920px) {
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  @media (max-width: 1199px) {
+    font-size: 30px;
+  }
+}
+.label {
+  height: 20px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #464255;
+  margin-bottom: 22px;
+}
+.percent {
+  margin-top: auto;
+  :global {
+    .ant-avatar {
+      width: 16px;
+      height: 16px;
+      svg {
+        width: auto;
+        height: 6px;
+      }
+    }
+  }
+}
+
+.percentLabel {
+  font-family: "Barlow", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #a3a3a3;
+}

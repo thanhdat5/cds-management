@@ -1,0 +1,57 @@
+.modal {
+  :global {
+    .ant-modal-content {
+      padding: 38px 30px 32px;
+      border-radius: 10px;
+    }
+    .ant-modal-close {
+      width: 32px;
+      height: 32px;
+      right: 24px;
+      top: 24px;
+      background: rgba($color: #818c99, $alpha: 0.12);
+      border-radius: 50%;
+      .ant-modal-close-x {
+        color: #818c99;
+      }
+    }
+    .ant-modal-footer {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      .ant-btn {
+        width: 104px;
+        height: 42px;
+        border-radius: 5px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 150%;
+        letter-spacing: 0.001em;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 89px;
+  margin-bottom: 37px;
+  text-align: center;
+  img,
+  svg {
+    height: 100%;
+    width: auto;
+  }
+}
+.message {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.001em;
+  color: #202223;
+  margin-bottom: 21px;
+}

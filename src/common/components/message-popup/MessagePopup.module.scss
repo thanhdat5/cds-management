@@ -1,0 +1,50 @@
+.modal {
+  :global {
+    .ant-modal-content {
+      padding: 30px;
+      border-radius: 10px;
+    }
+    .ant-modal-footer {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      .ant-btn {
+        height: 40px;
+        border-radius: 6px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 22px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 90px;
+  margin-bottom: 20px;
+  text-align: center;
+  svg {
+    height: 100%;
+    width: auto;
+  }
+}
+.title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
+  color: #081233;
+  margin-bottom: 10px;
+}
+.message {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #757575;
+  margin-bottom: 30px;
+}

@@ -1,15 +1,29 @@
 import { DataTable } from "@/common/components/data-table/DataTable";
 import {
   AppstoreAddOutlined,
+  CaretDownOutlined,
   DownloadOutlined,
   DownOutlined,
   EditOutlined,
   MoreOutlined,
   PlusOutlined,
+  SearchOutlined,
   SettingOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, Flex, Pagination, Tag } from "antd";
+import {
+  Button,
+  Collapse,
+  DatePicker,
+  Divider,
+  Dropdown,
+  Flex,
+  Form,
+  Input,
+  Pagination,
+  Tag,
+  Typography,
+} from "antd";
 import type { ColumnType } from "antd/es/table";
 import styles from "./IssuanceBatchPage.module.scss";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
@@ -140,7 +154,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2325,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -152,7 +166,7 @@ export const IssuanceBatchPage = () => {
       status: "CANCEL",
     },
     {
-      id: 2324,
+      id: 2326,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -164,7 +178,7 @@ export const IssuanceBatchPage = () => {
       status: "CLOS",
     },
     {
-      id: 2324,
+      id: 2327,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -176,7 +190,7 @@ export const IssuanceBatchPage = () => {
       status: "IHLD",
     },
     {
-      id: 2324,
+      id: 2328,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -188,7 +202,7 @@ export const IssuanceBatchPage = () => {
       status: "HIS",
     },
     {
-      id: 2324,
+      id: 2329,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -200,7 +214,7 @@ export const IssuanceBatchPage = () => {
       status: "AUTH",
     },
     {
-      id: 2324,
+      id: 2330,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -212,7 +226,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2331,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -224,7 +238,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2332,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -236,7 +250,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2333,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -248,7 +262,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2334,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -260,7 +274,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2335,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -272,7 +286,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
     {
-      id: 2324,
+      id: 2336,
       name: "CD001",
       distributionChannel: "Trực tiếp",
       tenor: "12T",
@@ -287,32 +301,99 @@ export const IssuanceBatchPage = () => {
 
   return (
     <div className={styles.inner}>
-      <Flex
-        align="center"
-        justify="space-between"
-        gap={20}
-        className={styles.header}
-      >
-        <h2>Quản lý lô phát hành</h2>
-        <Dropdown.Button
-          type="primary"
-          icon={<DownOutlined />}
-          menu={{
-            items: [
-              {
-                key: "m-1",
-                label: "Tạo mới mẫu mặc định",
-                icon: <AppstoreAddOutlined />,
-              },
-              { key: "m-2", label: "Tạo mới tự do", icon: <EditOutlined /> },
-              { key: "m-3", label: "Tải lên", icon: <UploadOutlined /> },
-              { key: "m-4", label: "Tải xuống", icon: <DownloadOutlined /> },
-            ],
-          }}
+      <Flex vertical>
+        <Flex
+          align="center"
+          justify="space-between"
+          gap={20}
+          className={styles.header}
         >
-          <PlusOutlined />
-          Tạo mới
-        </Dropdown.Button>
+          <h2>Quản lý lô phát hành</h2>
+          <Dropdown.Button
+            type="primary"
+            icon={<DownOutlined />}
+            menu={{
+              items: [
+                {
+                  key: "m-1",
+                  label: "Tạo mới mẫu mặc định",
+                  icon: <AppstoreAddOutlined />,
+                },
+                { key: "m-2", label: "Tạo mới tự do", icon: <EditOutlined /> },
+                { key: "m-3", label: "Tải lên", icon: <UploadOutlined /> },
+                { key: "m-4", label: "Tải xuống", icon: <DownloadOutlined /> },
+              ],
+            }}
+          >
+            <PlusOutlined />
+            Tạo mới
+          </Dropdown.Button>
+        </Flex>
+
+        <Form layout="vertical">
+          <Flex vertical className={styles.filter}>
+            <Flex align="end" gap={20} wrap>
+              <Form.Item name="keyword" style={{ marginBottom: 10, flex: 1 }}>
+                <Input
+                  size="large"
+                  placeholder="Tìm kiếm"
+                  suffix={<SearchOutlined />}
+                />
+              </Form.Item>
+              <Form.Item
+                name="releaseDate"
+                label="Phát hành từ ngày"
+                style={{ marginBottom: 10, width: 200 }}
+              >
+                <DatePicker size="large" style={{ width: "100%" }} />
+              </Form.Item>
+              <Form.Item
+                name="dueDate"
+                label="Phát hành đến ngày"
+                style={{ marginBottom: 10, width: 200 }}
+              >
+                <DatePicker size="large" style={{ width: "100%" }} />
+              </Form.Item>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                htmlType="submit"
+                style={{ height: 40, marginBottom: 10 }}
+              >
+                Tìm kiếm
+              </Button>
+            </Flex>
+
+            <Collapse
+              size="small"
+              items={[
+                {
+                  key: "1",
+                  showArrow: false,
+                  label: (
+                    <Flex gap={4} align="center">
+                      <Typography
+                        style={{ whiteSpace: "nowrap", fontWeight: 500 }}
+                      >
+                        Bộ lọc nâng cao
+                      </Typography>
+                      <CaretDownOutlined style={{ fontSize: 12 }} />
+                      <Divider
+                        style={{
+                          margin: 0,
+                          width: "auto",
+                          minWidth: "unset",
+                          flex: 1,
+                        }}
+                      />
+                    </Flex>
+                  ),
+                  children: <Flex>TODO</Flex>,
+                },
+              ]}
+            />
+          </Flex>
+        </Form>
       </Flex>
 
       <div className={styles.body}>

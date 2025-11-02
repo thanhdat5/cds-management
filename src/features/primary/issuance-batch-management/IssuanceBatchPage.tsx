@@ -1,18 +1,23 @@
 import { DataTable } from "@/common/components/data-table/DataTable";
 import {
   AppstoreAddOutlined,
+  ArrowRightOutlined,
   CaretDownOutlined,
+  DeleteOutlined,
   DownloadOutlined,
   DownOutlined,
   EditOutlined,
   MoreOutlined,
   PlusOutlined,
+  PrinterOutlined,
+  ReloadOutlined,
   SearchOutlined,
   SettingOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
 import {
   Button,
+  Col,
   Collapse,
   DatePicker,
   Divider,
@@ -21,12 +26,16 @@ import {
   Form,
   Input,
   Pagination,
+  Row,
+  Select,
   Tag,
   Typography,
 } from "antd";
 import type { ColumnType } from "antd/es/table";
 import styles from "./IssuanceBatchPage.module.scss";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
+import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 const formatCurrency = (value?: number) => {
   if (value == null) return "";
   return new Intl.NumberFormat("vi-VN", {
@@ -125,8 +134,14 @@ export const IssuanceBatchPage = () => {
         <Dropdown
           menu={{
             items: [
-              { key: "edit", label: "Chỉnh sửa" },
-              { key: "delete", label: "Xóa" },
+              { key: "edit", label: "Cập nhật", icon: <ReloadOutlined /> },
+              {
+                key: "edit",
+                label: "Gửi phê duyệt",
+                icon: <ArrowRightOutlined />,
+              },
+              { key: "edit", label: "In", icon: <PrinterOutlined /> },
+              { key: "delete", label: "Xóa", icon: <DeleteOutlined /> },
             ],
           }}
           trigger={["click"]}
@@ -298,6 +313,7 @@ export const IssuanceBatchPage = () => {
       status: "INAU",
     },
   ];
+  const dateFormat = "DD/MM/YYYY";
 
   return (
     <div className={styles.inner}>
@@ -326,11 +342,24 @@ export const IssuanceBatchPage = () => {
             }}
           >
             <PlusOutlined />
-            Tạo mới
+            <Link to="create">Tạo mới</Link>
           </Dropdown.Button>
         </Flex>
 
-        <Form layout="vertical">
+        <Form
+          layout="vertical"
+          initialValues={{
+            releaseDate: dayjs("12/12/2024", dateFormat),
+            dueDate: dayjs("12/12/2025", dateFormat),
+            type: "INHLD",
+            distributionChannel: "INHLD",
+            tenor: "INHLD",
+            status: "INHLD",
+            httl: "INHLD",
+            thm: "INHLD",
+            ncctg: "INHLD",
+          }}
+        >
           <Flex vertical className={styles.filter}>
             <Flex align="end" gap={20} wrap>
               <Form.Item name="keyword" style={{ marginBottom: 10, flex: 1 }}>
@@ -345,14 +374,22 @@ export const IssuanceBatchPage = () => {
                 label="Phát hành từ ngày"
                 style={{ marginBottom: 10, width: 200 }}
               >
-                <DatePicker size="large" style={{ width: "100%" }} />
+                <DatePicker
+                  format={dateFormat}
+                  size="large"
+                  style={{ width: "100%" }}
+                />
               </Form.Item>
               <Form.Item
                 name="dueDate"
                 label="Phát hành đến ngày"
                 style={{ marginBottom: 10, width: 200 }}
               >
-                <DatePicker size="large" style={{ width: "100%" }} />
+                <DatePicker
+                  format={dateFormat}
+                  size="large"
+                  style={{ width: "100%" }}
+                />
               </Form.Item>
               <Button
                 type="primary"
@@ -388,7 +425,103 @@ export const IssuanceBatchPage = () => {
                       />
                     </Flex>
                   ),
-                  children: <Flex>TODO</Flex>,
+                  children: (
+                    <Row gutter={20}>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item name="type" label="Kiểu lãi suất">
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item
+                          name="distributionChannel"
+                          label="Kênh phát hành"
+                        >
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item name="tenor" label="Kỳ hạn">
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item name="status" label="Trạng thái">
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item name="httl" label="Hình thức trả lãi">
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item name="thm" label="Tổng hạn mức">
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      >
+                        <Form.Item name="ncctg" label="Nhóm chứng chỉ tiền gửi">
+                          <Select
+                            options={[{ value: "INHLD", label: "INHLD" }]}
+                          />
+                        </Form.Item>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={{ span: 12 }}
+                        lg={{ span: 8 }}
+                        xxl={{ span: 6 }}
+                      ></Col>
+                    </Row>
+                  ),
                 },
               ]}
             />

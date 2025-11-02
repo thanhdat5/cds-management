@@ -1,4 +1,4 @@
-import { MasterDataPageInner } from "@/features/master-data/components/page-inner/PageInner";
+import { MasterDataPageInner } from "@/templates/page-inner/PageInner";
 import {
   Avatar,
   Button,
@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import type { User } from "./userTypes";
 import { useState } from "react";
 import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import { PageFooter } from "../components/page-footer/PageFooter";
+import { PageFooter } from "../../../templates/page-footer/PageFooter";
 const { Title } = Typography;
 const { Search } = Input;
 export const UserFormPage = () => {

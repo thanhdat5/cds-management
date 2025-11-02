@@ -1,8 +1,8 @@
 import { DataTable } from "@/common/components/data-table/DataTable";
 import { Pagination } from "antd";
 import type { ColumnType } from "antd/es/table";
-import { MasterDataPageInner } from "../components/page-inner/PageInner";
-import { PageHeader } from "../components/page-header/PageHeader";
+import { MasterDataPageInner } from "../../../templates/page-inner/PageInner";
+import { PageHeader } from "../../../templates/page-header/PageHeader";
 import type { Tenor } from "./tenorTypes";
 export const TenorPage = () => {
   const columns: ColumnType<Partial<Tenor>>[] = [

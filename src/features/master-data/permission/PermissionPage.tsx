@@ -6,8 +6,8 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, Flex, Pagination, Tree } from "antd";
 import type { ColumnType } from "antd/es/table";
-import { MasterDataPageInner } from "../components/page-inner/PageInner";
-import { PageHeader } from "../components/page-header/PageHeader";
+import { MasterDataPageInner } from "../../../templates/page-inner/PageInner";
+import { PageHeader } from "../../../templates/page-header/PageHeader";
 import type { Permission, PermissionDetail } from "./permissionTypes";
 export const PermissionPage = () => {
   const columns: ColumnType<Partial<Permission>>[] = [

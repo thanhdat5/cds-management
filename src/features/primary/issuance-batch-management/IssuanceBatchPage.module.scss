@@ -45,6 +45,27 @@
   @media (max-width: 1199px) {
     padding: 10px 20px;
   }
+  :global {
+    .ant-collapse,
+    .ant-collapse-content {
+      border: 0;
+      background-color: transparent !important;
+    }
+    .ant-collapse-header {
+      padding: 12px 0 !important;
+      background-color: transparent !important;
+    }
+    .ant-collapse-content-box {
+      padding: 0 !important;
+    }
+    .ant-form-item {
+      margin-bottom: 16px;
+      .ant-form-item-label {
+        padding-bottom: 7px;
+        line-height: 18px;
+      }
+    }
+  }
 }
 .body {
   flex: 1;

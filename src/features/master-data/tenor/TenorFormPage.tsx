@@ -1,7 +1,7 @@
-import { MasterDataPageInner } from "@/features/master-data/components/page-inner/PageInner";
+import { MasterDataPageInner } from "@/templates/page-inner/PageInner";
 import { Button, Col, Form, Input, InputNumber, Row, Select } from "antd";
 import { Link } from "react-router-dom";
-import { PageFooter } from "../components/page-footer/PageFooter";
+import { PageFooter } from "../../../templates/page-footer/PageFooter";
 import type { Tenor } from "./tenorTypes";
 const { TextArea } = Input;
 export const TenorFormPage = () => {

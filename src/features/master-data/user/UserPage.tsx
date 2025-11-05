@@ -1,4 +1,4 @@
-import { DataTable } from "@/common/components/data-table/DataTable";
+import { DataTable } from "@common/components";
 import { Pagination } from "antd";
 import type { ColumnType } from "antd/es/table";
 import { PageHeader } from "../../../templates/page-header/PageHeader";

@@ -1,4 +1,4 @@
-import { MASTER_DATA_CONFIG } from "@/constants";
+import { MASTER_DATA_CONFIG } from "@constants/app-setting";
 import styles from "./MasterDataPage.module.scss";
 import { Link } from "react-router-dom";
 export const MasterDataPage = () => {

@@ -23,9 +23,18 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": ".",
+
+    /* Import using alias */
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"]
+      // "@/*": ["src/*"],
+      "@common/*": ["common/*"],
+      "@features/*": ["features/*"],
+      "@theme/*": ["theme/*"],
+      "@routers/*": ["routers/*"],
+      "@layouts/*": ["layouts/*"],
+      "@templates/*": ["templates/*"],
+      "@constants/*": ["constants/*"]
     }
   },
   "include": ["src"]

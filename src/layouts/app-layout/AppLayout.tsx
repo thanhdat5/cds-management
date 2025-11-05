@@ -1,14 +1,6 @@
-import { MASTER_DATA_CONFIG } from "@constants/app-setting";
-import {
-  BellOutlined,
-  GiftOutlined,
-  MessageOutlined,
-  SearchOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import {
   Avatar,
-  Badge,
   Divider,
   Dropdown,
   Flex,
@@ -16,13 +8,15 @@ import {
   Layout,
   Menu,
   Typography,
+  type MenuProps,
 } from "antd";
-import type { MenuProps } from "antd/lib";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import styles from "./MainLayout.module.scss";
-const { Header, Content, Sider } = Layout;
-export const MainLayout = () => {
+import styles from "./AppLayout.module.scss";
+import { APP_LAYOUT_CONFIG } from "./constants";
+const { Sider, Header, Content } = Layout;
+
+export const AppLayout = () => {
   const items: MenuProps["items"] = [
     {
       key: "dashboard",
@@ -172,10 +166,10 @@ export const MainLayout = () => {
           key: "all",
           label: <Link to="/app/master-data">Tất cả danh mục</Link>,
         },
-        ...MASTER_DATA_CONFIG.map((item) => ({
-          key: item.key,
-          label: <Link to={`/app/master-data/${item.key}`}>{item.label}</Link>,
-        })),
+        // ...MASTER_DATA_CONFIG.map((item) => ({
+        //  key: item.key,
+        //  label: <Link to={`/app/master-data/${item.key}`}>{item.label}</Link>,
+        // })),
       ],
     },
     {
@@ -253,82 +247,39 @@ export const MainLayout = () => {
       label: "Báo cáo, phân tích",
     },
   ];
-
   const [collapsed, setCollapsed] = useState(false);
-
   return (
-    <Layout className={styles.layout}>
+    <Layout className={styles.appLayout}>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-        className={styles.sidebar}
-        width={349}
+        className={styles.appSidebar}
+        width={APP_LAYOUT_CONFIG.SIDEBAR_WIDTH}
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <Link to="/app" className={styles.logo}>
+        <Link to="/app" className={styles.appLogo}>
           <img src="/logo.png" alt="CD" />
           <span>CHỨNG CHỈ TIỀN GỬI</span>
         </Link>
         <Menu
           defaultSelectedKeys={["dashboard"]}
-          className={styles.menu}
+          className={styles.appMenu}
           theme="light"
           mode="inline"
           items={items}
         />
       </Sider>
-      <Layout>
-        <Header className={styles.header}>
+      <Layout className={styles.appContent}>
+        <Header className={styles.appHeader}>
           <Flex className={styles.headerInner} align="center">
             <Input
               placeholder="Tìm kiếm"
               style={{ flex: 1 }}
               suffix={<SearchOutlined />}
             />
-            <Flex className={styles.headerIcons} align="center">
-              <Badge count={21} color="#2D9CDB">
-                <Avatar
-                  shape="square"
-                  icon={<BellOutlined />}
-                  style={{
-                    backgroundColor: "rgba(45, 156, 219, 0.15)",
-                    color: "#2D9CDB",
-                  }}
-                />
-              </Badge>
-              <Badge count={53} color="#2D9CDB">
-                <Avatar
-                  shape="square"
-                  icon={<MessageOutlined />}
-                  style={{
-                    backgroundColor: "rgba(45, 156, 219, 0.15)",
-                    color: "#2D9CDB",
-                  }}
-                />
-              </Badge>
-              <Badge count={15} color="#5E6C93">
-                <Avatar
-                  shape="square"
-                  icon={<GiftOutlined />}
-                  style={{
-                    backgroundColor: "rgba(94, 108, 147, 0.15)",
-                    color: "#5E6C93",
-                  }}
-                />
-              </Badge>
-              <Badge count={19} color="#FF5B5B">
-                <Avatar
-                  shape="square"
-                  icon={<SettingOutlined />}
-                  style={{
-                    backgroundColor: "rgba(255, 91, 91, 0.15)",
-                    color: "#FF5B5B",
-                  }}
-                />
-              </Badge>
-            </Flex>
+            <Flex className={styles.headerIcons} align="center"></Flex>
             <Divider type="vertical" />
             <Flex align="center" gap={10} style={{ paddingLeft: 8 }}>
               <Typography className={styles.welcome}>Xin chào, Oanh</Typography>
@@ -349,7 +300,7 @@ export const MainLayout = () => {
             </Flex>
           </Flex>
         </Header>
-        <Content className={styles.content}>
+        <Content className={styles.appBody}>
           <Outlet />
         </Content>
       </Layout>

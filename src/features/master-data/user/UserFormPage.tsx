@@ -1,7 +1,6 @@
-import { MasterDataPageInner } from "@/templates/page-inner/PageInner";
+import { MasterDataPageInner } from "@templates/page-inner/PageInner";
 import {
   Avatar,
-  Button,
   Checkbox,
   Col,
   DatePicker,
@@ -20,6 +19,7 @@ import type { User } from "./userTypes";
 import { useState } from "react";
 import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { PageFooter } from "../../../templates/page-footer/PageFooter";
+import { Button } from "@common/components";
 const { Title } = Typography;
 const { Search } = Input;
 export const UserFormPage = () => {
@@ -65,7 +65,7 @@ export const UserFormPage = () => {
       ]}
       footer={
         <PageFooter>
-          <Button variant="filled" color="primary">
+          <Button>
             <Link to="/app/master-data/user">Hủy</Link>
           </Button>
           {activeTab === "1" ? (
@@ -195,20 +195,12 @@ export const UserFormPage = () => {
                       }}
                     >
                       <Col xl={{ span: 24 }} xs={{ span: 4 }}>
-                        <Button
-                          style={{ width: "100%" }}
-                          color="primary"
-                          variant="filled"
-                        >
+                        <Button style={{ width: "100%" }} type="secondary">
                           <DoubleLeftOutlined />
                         </Button>
                       </Col>
                       <Col xl={{ span: 24 }} xs={{ span: 4 }}>
-                        <Button
-                          style={{ width: "100%" }}
-                          color="primary"
-                          variant="filled"
-                        >
+                        <Button style={{ width: "100%" }} type="secondary">
                           <DoubleRightOutlined />
                         </Button>
                       </Col>

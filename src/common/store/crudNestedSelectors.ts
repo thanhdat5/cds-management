@@ -1,4 +1,4 @@
-import type { RootState } from "@/app/store";
+import type { RootState } from "../../app/store";
 
 /**
  * Factory function to generate selectors for a nested CRUD slice.
@@ -58,6 +58,7 @@ export function createNestedCrudSelectors<T>(
      * @returns The selected entity of type T or null
      */
     selectSelected: (state: RootState): T | null =>
-      (state[parentKey][childKey] as unknown as { selected: T | null }).selected,
+      (state[parentKey][childKey] as unknown as { selected: T | null })
+        .selected,
   };
 }

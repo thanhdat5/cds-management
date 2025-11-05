@@ -1,5 +1,5 @@
-import { PageFooter } from "@/templates/page-footer/PageFooter";
-import { MasterDataPageInner } from "@/templates/page-inner/PageInner";
+import { PageFooter } from "@templates/page-footer/PageFooter";
+import { MasterDataPageInner } from "@templates/page-inner/PageInner";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import {
   Avatar,
@@ -299,9 +299,9 @@ export const IssuanceBatchFormPage = () => {
               </Form.Item>
             </Col>
           </Row>
-              <Form.Item name="x23" label="Ghi chú">
-                <TextArea rows={4} />
-              </Form.Item>
+          <Form.Item name="x23" label="Ghi chú">
+            <TextArea rows={4} />
+          </Form.Item>
         </Flex>
       </Form>
     </MasterDataPageInner>

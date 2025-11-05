@@ -1,9 +1,10 @@
-import { Button, Modal, type ModalProps } from "antd";
+import { Modal, type ModalProps } from "antd";
 import { useMemo, type ReactNode } from "react";
 import styles from "./MessagePopup.module.scss";
 import IconWarning from "../../assets/icons/icon-warning.svg";
 import IconFail from "../../assets/icons/icon-fail.svg";
 import IconSuccess from "../../assets/icons/icon-success.svg";
+import { Button } from "../button";
 
 export interface MessagePopupProps
   extends Pick<ModalProps, "title" | "cancelText" | "open" | "onCancel"> {
@@ -31,6 +32,7 @@ export const MessagePopup = ({
       open={open}
       footer={[
         <Button
+          size="large"
           type="primary"
           key="back"
           onClick={onCancel}

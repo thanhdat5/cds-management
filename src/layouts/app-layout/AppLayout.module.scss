@@ -1,0 +1,83 @@
+.appLayout {
+  min-height: 100vh;
+  --cds-app-layout-header-height: 80px;
+  --cds-app-layout-sidebar-width: 300px;
+}
+:global {
+  .ant-layout-sider-collapsed {
+    --cds-app-layout-sidebar-width: 0;
+  }
+}
+
+.appSidebar {
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid rgba(5, 5, 5, 0.06);
+  :global {
+    .ant-layout-sider-zero-width-trigger {
+      background-color: rgba($color: #000000, $alpha: 0.05);
+      color: #353535;
+      width: 30px;
+      height: 30px;
+      top: 0;
+      right: -30px;
+      border-radius: 0 4px 4px 0;
+      z-index: 999;
+    }
+  }
+}
+.appLogo {
+  height: var(--cds-app-layout-header-height);
+  color: var(--cds-color-primary);
+  text-decoration: none;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #2a6beb80;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  white-space: nowrap;
+  img {
+    width: auto;
+    height: 32px;
+  }
+}
+.appMenu {
+  max-height: calc(100% - var(--cds-app-layout-header-height));
+  padding: 24px 16px;
+  border: 0 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: var(--cds-color-border);
+  }
+}
+.appContent {
+  overflow: auto;
+}
+.appHeader {
+  background: #f3f2f7;
+  height: var(--cds-app-layout-header-height);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: var(--cds-app-layout-sidebar-width);
+  right: 0;
+  z-index: 10;
+}
+.appBody {
+  margin-top: var(--cds-app-layout-header-height);
+  background: #fff;
+  height: calc(100vh - var(--cds-app-layout-header-height));
+  position: relative;
+}

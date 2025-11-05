@@ -3,7 +3,8 @@ import {
   PlusOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { Button, Flex, Input } from "antd";
+import { Button } from "@common/components";
+import { Flex, Input } from "antd";
 import type { ChangeEvent, MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
@@ -39,24 +40,14 @@ export const PageHeader = ({
       )}
       <Flex align="center" gap={10} wrap style={{ marginLeft: "auto" }}>
         {onExport ? (
-          <Button
-            type="primary"
-            icon={<DownloadOutlined />}
-            iconPosition="start"
-            onClick={onExport}
-          >
+          <Button type="primary" icon={<DownloadOutlined />} onClick={onExport}>
             <Link to="create">Export</Link>
           </Button>
         ) : (
           <></>
         )}
         {onSync ? (
-          <Button
-            type="primary"
-            icon={<ReloadOutlined />}
-            iconPosition="start"
-            onClick={onSync}
-          >
+          <Button type="primary" icon={<ReloadOutlined />} onClick={onSync}>
             <Link to="create">Đồng bộ</Link>
           </Button>
         ) : (

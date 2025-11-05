@@ -1,4 +1,4 @@
-import { createCrudSlice } from "@/common/store/crudSliceFactory"; // adjust path as needed
+import { createCrudSlice } from "@common/store/crudSliceFactory"; // adjust path as needed
 import { userService } from "./userService";
 import type { User } from "./userTypes";
 

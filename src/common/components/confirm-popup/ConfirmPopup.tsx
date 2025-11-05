@@ -1,8 +1,9 @@
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Modal, type ModalProps } from "antd";
+import { Modal, type ModalProps } from "antd";
 import type { ReactNode } from "react";
-import styles from "./ConfirmPopup.module.scss";
 import IconConfirm from "../../assets/icons/icon-delete.svg";
+import styles from "./ConfirmPopup.module.scss";
+import { Button } from "../button";
 
 export interface ConfirmPopupProps
   extends Pick<
@@ -29,16 +30,14 @@ export const ConfirmPopup = ({
       open={open}
       footer={[
         <Button
-          color="primary"
-          variant="outlined"
+          size="large"
           key="back"
           onClick={onCancel}
           icon={<CloseOutlined />}
-          iconPosition="start"
         >
           {cancelText}
         </Button>,
-        <Button key="submit" type="primary" onClick={onConfirm}>
+        <Button size="large" key="submit" type="primary" onClick={onConfirm}>
           {okText}
         </Button>,
       ]}

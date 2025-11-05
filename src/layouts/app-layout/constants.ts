@@ -1,0 +1,4 @@
+export const APP_LAYOUT_CONFIG = {
+  HEADER_HEIGHT: 80,
+  SIDEBAR_WIDTH: 300,
+};

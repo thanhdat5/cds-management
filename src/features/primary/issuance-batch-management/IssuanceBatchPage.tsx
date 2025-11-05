@@ -1,4 +1,4 @@
-import { DataTable } from "@/common/components/data-table/DataTable";
+import { DataTable } from "@common/components/data-table/DataTable";
 import {
   AppstoreAddOutlined,
   ArrowRightOutlined,
@@ -36,6 +36,7 @@ import styles from "./IssuanceBatchPage.module.scss";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import { DropdownButton } from "@common/components";
 const formatCurrency = (value?: number) => {
   if (value == null) return "";
   return new Intl.NumberFormat("vi-VN", {
@@ -325,9 +326,10 @@ export const IssuanceBatchPage = () => {
           className={styles.header}
         >
           <h2>Quản lý lô phát hành</h2>
-          <Dropdown.Button
-            type="primary"
-            icon={<DownOutlined />}
+          <DropdownButton
+            size="large"
+            icon={<PlusOutlined />}
+            url="create"
             menu={{
               items: [
                 {
@@ -341,9 +343,8 @@ export const IssuanceBatchPage = () => {
               ],
             }}
           >
-            <PlusOutlined />
-            <Link to="create">Tạo mới</Link>
-          </Dropdown.Button>
+            Tạo mới
+          </DropdownButton>
         </Flex>
 
         <Form

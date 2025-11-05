@@ -1,4 +1,4 @@
-import { DataTable } from "@/common/components/data-table/DataTable";
+import { DataTable } from "@common/components";
 import {
   DownOutlined,
   MoreOutlined,

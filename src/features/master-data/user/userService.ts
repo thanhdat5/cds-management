@@ -1,4 +1,4 @@
-import { createCrudService } from "@/common/services/crudServiceFactory";
+import { createCrudService } from "@common/services/crudServiceFactory";
 import type { User } from "./userTypes";
 
 /**

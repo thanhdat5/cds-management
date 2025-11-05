@@ -1,9 +1,11 @@
-import { Button, Modal, type ModalProps } from "antd";
+import { Modal, type ModalProps } from "antd";
 import type { MouseEvent, ReactNode } from "react";
 import styles from "./LoadingPopup.module.scss";
 import IconLoading from "../../assets/icons/icon-loading.svg";
+import { Button } from "../button";
 
-export interface LoadingPopupProps extends Pick<ModalProps, "open" | "onCancel"> {
+export interface LoadingPopupProps
+  extends Pick<ModalProps, "open" | "onCancel"> {
   buttonText?: ModalProps["cancelText"];
   message: string | ReactNode;
   onButtonClick?: (event: MouseEvent) => void;
@@ -23,10 +25,10 @@ export const LoadingPopup = ({
       onCancel={onCancel}
       footer={[
         <Button
-          color="primary"
-          variant="outlined"
+          size="large"
           key="back"
           onClick={onButtonClick}
+          style={{ width: 104 }}
         >
           {buttonText}
         </Button>,

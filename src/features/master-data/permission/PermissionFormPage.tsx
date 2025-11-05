@@ -1,4 +1,4 @@
-import { MasterDataPageInner } from "@/templates/page-inner/PageInner";
+import { MasterDataPageInner } from "@templates/page-inner/PageInner";
 import { Link } from "react-router-dom";
 export const PermissionFormPage = () => {
   return (

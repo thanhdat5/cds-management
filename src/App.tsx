@@ -1,32 +1,25 @@
-import router from "@/routes";
-import { ConfigProvider, Spin } from "antd";
+import { PopupProvider } from "@common/context";
+import { ConfigProvider, Flex, Spin } from "antd";
 import "antd/dist/reset.css";
-import "./App.scss";
 import viVN from "antd/locale/vi_VN";
 import React from "react";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import store from "@/app/store";
-import { PopupProvider } from "@/common/context";
-import { defaultTheme } from "./themes/default-theme";
+import router from "./routes";
+import { cdsTheme } from "./themes";
+import "./themes/cds-theme.scss";
+import store from "./app/store";
 
 function App() {
   return (
     <Provider store={store}>
-      <ConfigProvider theme={defaultTheme} locale={viVN}>
+      <ConfigProvider theme={cdsTheme} locale={viVN}>
         <PopupProvider>
           <React.Suspense
             fallback={
-              <div
-                style={{
-                  height: "100vh",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <Flex align="center" justify="center" style={{ height: "100vh" }}>
                 <Spin size="large" />
-              </div>
+              </Flex>
             }
           >
             <RouterProvider router={router} />

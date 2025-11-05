@@ -1,4 +1,4 @@
-import axiosClient from "@/common/services/axiosClient";
+import axiosClient from "@common/services/axiosClient";
 import type { CRUDListResponse } from "../types/crudTypes";
 
 /**

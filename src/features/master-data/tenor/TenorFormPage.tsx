@@ -1,4 +1,4 @@
-import { MasterDataPageInner } from "@/templates/page-inner/PageInner";
+import { MasterDataPageInner } from "@templates/page-inner/PageInner";
 import { Button, Col, Form, Input, InputNumber, Row, Select } from "antd";
 import { Link } from "react-router-dom";
 import { PageFooter } from "../../../templates/page-footer/PageFooter";

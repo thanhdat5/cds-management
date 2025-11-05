@@ -1,0 +1,9 @@
+.wrap {
+  gap: 8px;
+  :global {
+    .ant-avatar {
+      background-color: rgba(45, 156, 219, 0.15);
+      color: var(--cds-color-info);
+    }
+  }
+}

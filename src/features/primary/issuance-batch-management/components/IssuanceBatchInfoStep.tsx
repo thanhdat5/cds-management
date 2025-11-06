@@ -1,14 +1,14 @@
 import { Button, SectionTitle } from "@common/components";
 import {
-    Col,
-    DatePicker,
-    Flex,
-    Form,
-    Input,
-    InputNumber,
-    Row,
-    Select,
-    type InputNumberProps
+  Col,
+  DatePicker,
+  Flex,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  type InputNumberProps,
 } from "antd";
 import { useState } from "react";
 const { TextArea } = Input;
@@ -242,53 +242,72 @@ export const IssuanceBatchInfoStep = () => {
                     {(fields, { add, remove }) => (
                       <>
                         {fields.map(({ key, name, ...restField }) => (
-                          <Row gutter={24} key={key} align="middle">
-                            <Col span={8}>
-                              <Form.Item
-                                {...restField}
-                                name={[name, "fromDate"]}
-                                label="Từ ngày"
-                              >
-                                <DatePicker
-                                  format={dateFormat}
-                                  style={{ width: "100%" }}
-                                />
-                              </Form.Item>
-                            </Col>
-                            <Col span={8}>
-                              <Form.Item
-                                {...restField}
-                                name={[name, "toDate"]}
-                                label="Đến ngày"
-                              >
-                                <DatePicker
-                                  format={dateFormat}
-                                  style={{ width: "100%" }}
-                                />
-                              </Form.Item>
-                            </Col>
-                            <Col span={7}>
-                              <Form.Item
-                                {...restField}
-                                name={[name, "rate"]}
-                                label="Lãi suất theo kỳ"
-                              >
-                                <InputNumber<number>
-                                  style={{ width: "100%" }}
-                                  suffix="%"
-                                />
-                              </Form.Item>
-                            </Col>
-                            <Col span={1}>
-                              <Button
-                                type="text"
-                                style={{ color: "var(--cds-color-error)" }}
-                                onClick={() => remove(name)}
-                              >
-                                X
-                              </Button>
-                            </Col>
-                          </Row>
+                          <Flex
+                            vertical
+                            key={key}
+                            style={{
+                              padding: 16,
+                              background: "#F3F2F7",
+                              borderRadius: 8,
+                              position: "relative",
+                              marginBottom: 10,
+                            }}
+                          >
+                            <Button
+                              type="text"
+                              style={{
+                                color: "var(--cds-color-error)",
+                                position: "absolute",
+                                top: 10,
+                                right: 10,
+                                zIndex: 2,
+                              }}
+                              onClick={() => remove(name)}
+                            >
+                              X
+                            </Button>
+                            <Row gutter={24} align="middle">
+                              <Col span={24} md={12} lg={8}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[name, "fromDate"]}
+                                  label="Từ ngày"
+                                  style={{ margin: 4 }}
+                                >
+                                  <DatePicker
+                                    format={dateFormat}
+                                    style={{ width: "100%" }}
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col span={24} md={12} lg={8}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[name, "toDate"]}
+                                  label="Đến ngày"
+                                  style={{ margin: 4 }}
+                                >
+                                  <DatePicker
+                                    format={dateFormat}
+                                    style={{ width: "100%" }}
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col span={24} md={12} lg={8}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[name, "rate"]}
+                                  label="Lãi suất theo kỳ"
+                                  style={{ margin: 4 }}
+                                >
+                                  <InputNumber<number>
+                                    style={{ width: "100%" }}
+                                    suffix="%"
+                                  />
+                                </Form.Item>
+                              </Col>
+                            </Row>
+                          </Flex>
                         ))}
 
                         <Button

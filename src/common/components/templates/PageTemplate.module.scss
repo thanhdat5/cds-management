@@ -1,0 +1,22 @@
+.pageHeader {
+  padding: 16px var(--app-layout-content-px) 10px;
+  &.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+  }
+}
+.pageBody {
+  padding: 0 var(--app-layout-content-px);
+}
+.pageFooter {
+  padding: 16px var(--app-layout-content-px) 10px;
+  &.sticky {
+    position: sticky;
+    bottom: 0;
+    z-index: 9;
+  }
+  &.shadow {
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.04);
+  }
+}

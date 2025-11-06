@@ -31,6 +31,7 @@ const typeMap: Record<ButtonType, AntButtonProps["type"]> = {
   default: "primary",
   primary: "primary",
   secondary: undefined,
+  text: "text",
 };
 
 // Maps custom button types to Ant Design's color prop
@@ -38,6 +39,7 @@ const colorMap: Record<ButtonType, AntButtonProps["color"]> = {
   default: undefined,
   primary: undefined,
   secondary: "primary",
+  text: undefined,
 };
 
 // Maps custom button types to Ant Design's variant prop
@@ -45,6 +47,7 @@ const variantMap: Record<ButtonType, AntButtonProps["variant"]> = {
   default: undefined,
   primary: undefined,
   secondary: "filled",
+  text: undefined,
 };
 
 // Set ghost style for specific button types
@@ -52,6 +55,7 @@ const ghostMap: Record<ButtonType, AntButtonProps["ghost"]> = {
   default: true,
   primary: undefined,
   secondary: undefined,
+  text: undefined,
 };
 
 /**

@@ -12,6 +12,9 @@
       top: 0;
       right: -30px;
       border-radius: 0 4px 4px 0;
+      @media (min-width: 992px) {
+        display: none;
+      }
     }
   }
 }

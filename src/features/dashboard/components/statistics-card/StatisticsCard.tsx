@@ -16,9 +16,9 @@ export const StatisticsCard = ({
   percentLabel,
 }: StatisticsCardProps) => {
   return (
-    <Flex align="center" gap={25} className={styles.card}>
-      <Avatar src={icon} alt={label} style={{ width: 85, height: 85 }} />
-      <Flex vertical align="start">
+    <Flex className={styles.card}>
+      <Avatar src={icon} alt={label} size={70} />
+      <Flex vertical gap={4} align="start">
         <Flex className={styles.value}>{value}</Flex>
         <Flex className={styles.label}>{label}</Flex>
         <Flex align="center" gap={6} className={styles.percent}>

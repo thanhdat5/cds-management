@@ -28,6 +28,7 @@
     "baseUrl": "./src",
     "paths": {
       // "@/*": ["src/*"],
+      "@app/*": ["app/*"],
       "@common/*": ["common/*"],
       "@features/*": ["features/*"],
       "@theme/*": ["theme/*"],

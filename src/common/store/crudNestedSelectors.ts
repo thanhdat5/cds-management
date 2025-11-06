@@ -1,4 +1,4 @@
-import type { RootState } from "../../app/store";
+import type { RootState } from "@app/store";
 
 /**
  * Factory function to generate selectors for a nested CRUD slice.

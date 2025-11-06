@@ -2,6 +2,9 @@
   height: var(--app-header-height);
   background-color: var(--cds-color-bg-base);
   padding: 16px var(--app-layout-content-px);
+  @media (max-width: 991px) {
+    padding-bottom: 10px;
+  }
   .headerInner {
     gap: 30px;
     @media (max-width: 1199px) {
@@ -13,6 +16,13 @@
     @media (max-width: 1199px) {
       gap: 16px;
       margin-left: auto;
+    }
+  }
+  @media (max-width: 991px) {
+    :global {
+      .ant-form-item {
+        display: none;
+      }
     }
   }
 }

@@ -133,3 +133,12 @@ body {
     font-size: var(--cds-select-arrow-size);
   }
 }
+
+/* Range Picker */
+@media (max-width: 480px) {
+  .ant-picker-panels {
+    max-width: calc(100vw - 40px) !important;
+    min-width: unset !important;
+    overflow: auto;
+  }
+}

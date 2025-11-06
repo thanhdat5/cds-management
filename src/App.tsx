@@ -7,8 +7,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 import { cdsTheme } from "./themes";
-import "./themes/cds-theme.scss";
-import store from "./app/store";
+import store from "@app/store";
 
 function App() {
   return (

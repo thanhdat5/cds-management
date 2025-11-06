@@ -5,16 +5,17 @@ import {
   HomeOutlined,
   PieChartOutlined,
   SettingOutlined,
-  UsergroupAddOutlined
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { MASTER_DATA_CONFIG } from "@constants/app-setting";
 import { APP_LAYOUT_CONFIG } from "@layouts/main-layout/constants";
-import { Layout, Menu, type MenuProps } from "antd";
+import { Grid, Layout, Menu, type MenuProps } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../logo/Logo";
 import styles from "./Sidebar.module.scss";
 const { Sider } = Layout;
+const { useBreakpoint } = Grid;
 export const Sidebar = () => {
   const items: MenuProps["items"] = [
     {
@@ -125,6 +126,12 @@ export const Sidebar = () => {
   ];
 
   const [collapsed, setCollapsed] = useState(false);
+  const screens = useBreakpoint();
+  const handleMenuClick = () => {
+    if (!screens.lg) {
+      setCollapsed(true);
+    }
+  };
 
   return (
     <Sider
@@ -143,6 +150,7 @@ export const Sidebar = () => {
         mode="inline"
         items={items}
         className={styles.appMenu}
+        onClick={handleMenuClick}
       />
     </Sider>
   );

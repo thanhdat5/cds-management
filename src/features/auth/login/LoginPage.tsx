@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "@app/hooks";
 import { Flex, Form } from "antd";
 import React, { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";

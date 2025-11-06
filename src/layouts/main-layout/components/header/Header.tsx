@@ -1,8 +1,8 @@
 import {
-    BellOutlined,
-    GiftOutlined,
-    MessageOutlined,
-    SettingOutlined
+  BellOutlined,
+  GiftOutlined,
+  MessageOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { IconCard } from "@common/components";
 import { Flex, Form, Input, Layout } from "antd";
@@ -13,11 +13,6 @@ export const Header = () => {
   return (
     <Layout.Header className={styles.appHeader}>
       <Flex className={styles.headerInner} align="center">
-        {/* <Input
-              placeholder="Tìm kiếm"
-              style={{ flex: 1 }}
-              suffix={<SearchOutlined />}
-            /> */}
         <Form.Item style={{ flex: 1, margin: 0 }}>
           <Search size="large" placeholder="Tìm kiếm" />
         </Form.Item>

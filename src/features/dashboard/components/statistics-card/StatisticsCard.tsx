@@ -1,6 +1,7 @@
 import { Avatar, Flex } from "antd";
 import styles from "./StatisticsCard.module.scss";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
+import { formatNumber } from "@common/utils/numberUtils";
 interface StatisticsCardProps {
   icon: string;
   value: number;
@@ -15,27 +16,29 @@ export const StatisticsCard = ({
   percent,
   percentLabel,
 }: StatisticsCardProps) => {
+  const percentText = `${formatNumber(Math.abs(percent))}%${
+    percentLabel ? " (" + percentLabel + ")" : ""
+  }`;
+  const percentBg =
+    percent > 0 ? "rgba(46, 214, 163, 0.15)" : "rgba(255, 91, 91, 0.15)";
+  const percentColor =
+    percent > 0 ? "var(--cds-color-success)" : "var(--cds-color-error)";
   return (
     <Flex className={styles.card}>
       <Avatar src={icon} alt={label} size={70} />
       <Flex vertical gap={4} align="start">
-        <Flex className={styles.value}>{value}</Flex>
+        <Flex className={styles.value}>{formatNumber(value)}</Flex>
         <Flex className={styles.label}>{label}</Flex>
         <Flex align="center" gap={6} className={styles.percent}>
           <Avatar
             shape="circle"
             icon={percent > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
             style={{
-              backgroundColor:
-                percent > 0
-                  ? "rgba(46, 214, 163, 0.15)"
-                  : "rgba(255, 91, 91, 0.15)",
-              color: percent > 0 ? "#00A389" : "#FF5B5B",
+              backgroundColor: percentBg,
+              color: percentColor,
             }}
           />
-          <span className={styles.percentLabel}>{`${Math.abs(percent)}%${
-            percentLabel ? ` (${percentLabel})` : ""
-          }`}</span>
+          <span className={styles.percentLabel}>{percentText}</span>
         </Flex>
       </Flex>
     </Flex>

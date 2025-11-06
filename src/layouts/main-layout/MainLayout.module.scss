@@ -10,6 +10,9 @@
   @media (max-width: 1199px) {
     --app-layout-content-px: 20px;
   }
+  @media (max-width: 991px) {
+    --app-header-height: 74px;
+  }
   * {
     ::-webkit-scrollbar {
       width: 8px;

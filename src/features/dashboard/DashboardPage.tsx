@@ -1,28 +1,43 @@
 import { PageTemplate } from "@common/components/templates";
-import { Col, Flex, Row, Typography } from "antd";
+import { Col, Flex, Image, Row, Typography, type RowProps } from "antd";
 import styles from "./DashboardPage.module.scss";
 import StatisticIcon2 from "./assets/icons/icon-delivered.svg";
 import StatisticIcon3 from "./assets/icons/icon-order-2.svg";
 import StatisticIcon4 from "./assets/icons/icon-order-3.svg";
 import StatisticIcon1 from "./assets/icons/icon-order.svg";
+import ChartSample1 from "./assets/images/chart-1.svg";
+import ChartSample2 from "./assets/images/chart-2.svg";
+import ChartSample3 from "./assets/images/chart-3.svg";
+import ChartSample4 from "./assets/images/chart-4.svg";
+import ChartSample5 from "./assets/images/chart-5.svg";
+import ChartSample6 from "./assets/images/chart-6.svg";
 import { ChartCard } from "./components/chart-card/ChartCard";
 import { SelectDate } from "./components/select-date/SelectDate";
 import { StatisticsCard } from "./components/statistics-card/StatisticsCard";
 const { Title } = Typography;
 export const DashboardPage = () => {
+  const rowGutter: RowProps["gutter"] = [
+    {
+      xs: 16,
+      md: 24,
+    },
+    {
+      xs: 16,
+      md: 24,
+    },
+  ];
   return (
     <PageTemplate
       header={
         <Flex wrap align="start" justify="space-between" gap={16}>
           <Title level={1}>Dashboard</Title>
-
           <SelectDate />
         </Flex>
       }
       headerBg="var(--cds-color-bg-base)"
     >
       <Flex vertical gap={30} className={styles.inner}>
-        <Row gutter={[24, 24]}>
+        <Row gutter={rowGutter}>
           <Col span={24} md={{ span: 12 }} xxl={6}>
             <StatisticsCard
               icon={StatisticIcon1}
@@ -61,13 +76,13 @@ export const DashboardPage = () => {
           </Col>
         </Row>
 
-        <Row gutter={[24, 24]}>
+        <Row gutter={rowGutter}>
           <Col span={24} md={{ span: 12 }}>
             <ChartCard
               title="Tổng giao dịch"
               menus={[{ key: "1", label: "Refresh" }]}
             >
-              Test
+              <Image src={ChartSample1} alt="" width="100%" />
             </ChartCard>
           </Col>
           <Col span={24} md={{ span: 12 }}>
@@ -75,18 +90,18 @@ export const DashboardPage = () => {
               title="Xu hướng mua"
               menus={[{ key: "1", label: "Refresh" }]}
             >
-              Test
+              <Image src={ChartSample2} alt="" width="100%" />
             </ChartCard>
           </Col>
         </Row>
 
-        <Row gutter={[24, 24]}>
+        <Row gutter={rowGutter}>
           <Col span={24} xxl={{ span: 16 }} md={{ span: 12 }}>
             <ChartCard
               title="Tổng giá trị giao dịch "
               menus={[{ key: "1", label: "Refresh" }]}
             >
-              Test
+              <Image src={ChartSample3} alt="" width="100%" />
             </ChartCard>
           </Col>
           <Col span={24} xxl={{ span: 8 }} md={{ span: 12 }}>
@@ -94,17 +109,21 @@ export const DashboardPage = () => {
               title="Phân bố khách hàng"
               menus={[{ key: "1", label: "Refresh" }]}
             >
-              Test
+              <Image src={ChartSample4} alt="" width="100%" />
             </ChartCard>
           </Col>
         </Row>
 
-        <Row gutter={[24, 24]}>
+        <Row gutter={rowGutter}>
           <Col span={24} md={{ span: 12 }}>
-            <ChartCard title="Hiệu suất doanh thu theo tháng">Test</ChartCard>
+            <ChartCard title="Hiệu suất doanh thu theo tháng">
+              <Image src={ChartSample5} alt="" width="100%" />
+            </ChartCard>
           </Col>
           <Col span={24} md={{ span: 12 }}>
-            <ChartCard title="Doanh thu theo tuần">Test</ChartCard>
+            <ChartCard title="Doanh thu theo tuần">
+              <Image src={ChartSample6} alt="" width="100%" />
+            </ChartCard>
           </Col>
         </Row>
       </Flex>

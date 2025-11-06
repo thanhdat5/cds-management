@@ -1,4 +1,4 @@
-import type { RootState } from "../../app/store";
+import type { RootState } from "@app/store";
 
 /**
  * Factory for CRUD selectors. Only use for slices with the CRUD shape!

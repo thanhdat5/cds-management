@@ -13,8 +13,8 @@ interface PageTemplateProps {
 export const PageTemplate: React.FC<PageTemplateProps> = ({
   header,
   footer,
-  stickyHeader = true,
-  stickyFooter = true,
+  stickyHeader,
+  stickyFooter,
   footerShadow,
   headerBg,
   footerBg,

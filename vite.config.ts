@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 const aliases = [
+  { find: "@app", replacement: path.resolve(__dirname, "src/app") },
   { find: "@common", replacement: path.resolve(__dirname, "src/common") },
   { find: "@features", replacement: path.resolve(__dirname, "src/features") },
   { find: "@theme", replacement: path.resolve(__dirname, "src/theme") },

@@ -11,7 +11,7 @@ import {
   ReloadOutlined,
   SearchOutlined,
   SettingOutlined,
-  UploadOutlined
+  UploadOutlined,
 } from "@ant-design/icons";
 import { Button, DropdownButton } from "@common/components";
 import { DataTable } from "@common/components/data-table/DataTable";
@@ -34,6 +34,8 @@ import type { ColumnType } from "antd/es/table";
 import dayjs from "dayjs";
 import styles from "./IssuanceBatchPage.module.scss";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
+import { PageTemplate } from "@common/components/templates";
+const { Title } = Typography;
 const formatCurrency = (value?: number) => {
   if (value == null) return "";
   return new Intl.NumberFormat("vi-VN", {
@@ -314,15 +316,12 @@ export const IssuanceBatchPage = () => {
   const dateFormat = "DD/MM/YYYY";
 
   return (
-    <div className={styles.inner}>
-      <Flex vertical>
-        <Flex
-          align="center"
-          justify="space-between"
-          gap={20}
-          className={styles.header}
-        >
-          <h2>Quản lý lô phát hành</h2>
+    <PageTemplate
+      stickyHeader
+      stickyFooter
+      header={
+        <Flex flex={1}>
+          <Title style={{ flex: 1 }}>Quản lý lô phát hành</Title>
           <DropdownButton
             size="large"
             icon={<PlusOutlined />}
@@ -343,7 +342,8 @@ export const IssuanceBatchPage = () => {
             Tạo mới
           </DropdownButton>
         </Flex>
-
+      }
+      subHeader={
         <Form
           layout="vertical"
           initialValues={{
@@ -357,6 +357,7 @@ export const IssuanceBatchPage = () => {
             thm: "INHLD",
             ncctg: "INHLD",
           }}
+          style={{ flex: 1 }}
         >
           <Flex vertical className={styles.filter}>
             <Flex align="end" gap={20} wrap>
@@ -525,19 +526,17 @@ export const IssuanceBatchPage = () => {
             />
           </Flex>
         </Form>
-      </Flex>
-
-      <div className={styles.body}>
-        <DataTable<Partial<IssuanceBatch>>
-          rowKey="id"
-          columns={columns}
-          dataSource={dataSource}
-          rowSelection={{ type: "checkbox" }}
-        />
-      </div>
-      <div className={styles.footer}>
+      }
+      footer={
         <Pagination showSizeChanger total={5000} pageSize={50} align="center" />
-      </div>
-    </div>
+      }
+    >
+      <DataTable<Partial<IssuanceBatch>>
+        rowKey="id"
+        columns={columns}
+        dataSource={dataSource}
+        rowSelection={{ type: "checkbox" }}
+      />
+    </PageTemplate>
   );
 };

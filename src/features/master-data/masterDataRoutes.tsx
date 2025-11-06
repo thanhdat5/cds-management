@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { CurrencyFormPage } from "./currency/CurrencyFormPage";
 import { CurrencyPage } from "./currency/CurrencyPage";
+import { CustomerFormPage } from "./customer/CustomerFormPage";
+import { CustomerPage } from "./customer/CustomerPage";
 import { DenominationFormPage } from "./denomination/DenominationFormPage";
 import { DenominationPage } from "./denomination/DenominationPage";
 import { HolidayFormPage } from "./holiday/HolidayFormPage";
@@ -143,6 +145,24 @@ export default [
       {
         path: "update/:id",
         element: <OrganizationFormPage />,
+      },
+    ],
+  },
+  {
+    path: "customer",
+    element: <Outlet />,
+    children: [
+      {
+        index: true,
+        element: <CustomerPage />,
+      },
+      {
+        path: "create",
+        element: <CustomerFormPage />,
+      },
+      {
+        path: "update/:id",
+        element: <CustomerFormPage />,
       },
     ],
   },

@@ -65,6 +65,7 @@ export const DropdownButton: React.FC<DropdownButtonProps> = ({
       icon={<DownOutlined />}
       trigger={trigger}
       placement={placement}
+      style={{ width: "auto" }}
       {...rest}
     >
       {renderMainButton(children)}

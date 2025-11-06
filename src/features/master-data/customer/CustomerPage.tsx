@@ -1,0 +1,392 @@
+import { PlusOutlined } from "@ant-design/icons";
+import { Button } from "@common/components";
+import { DataTable } from "@common/components/data-table/DataTable";
+import { PageTemplate } from "@common/components/templates";
+import { Breadcrumb, Flex, Input, Pagination } from "antd";
+import type { ColumnType } from "antd/es/table";
+import { Link } from "react-router-dom";
+import type { Customer } from "./customerTypes";
+const { Search } = Input;
+export const CustomerPage = () => {
+  const columns: ColumnType<Partial<Customer>>[] = [
+    {
+      title: "Mã KH",
+      dataIndex: "customerCode",
+      key: "customerCode",
+      width: 110,
+    },
+    {
+      title: "Mã CIF",
+      dataIndex: "cifCode",
+      key: "cifCode",
+      width: 110,
+    },
+    {
+      title: "Tên KH",
+      dataIndex: "customerName",
+      key: "customerName",
+      width: 170,
+    },
+    {
+      title: "Loại KH",
+      dataIndex: "customerGroup",
+      key: "customerGroup",
+      width: 120,
+    },
+    {
+      title: "Ngày sinh/Ngày thành lập",
+      dataIndex: "dateOfBirth",
+      key: "dateOfBirth",
+      width: 200,
+      render: (date) => {
+        return date ? new Date(date).toLocaleDateString() : "";
+      },
+    },
+    {
+      title: "Số giấy tờ",
+      dataIndex: "identityNumber",
+      key: "identityNumber",
+      width: 120,
+    },
+    {
+      title: "MST",
+      dataIndex: "taxCode",
+      key: "taxCode",
+      width: 120,
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      width: 180,
+    },
+    {
+      title: "SDT",
+      dataIndex: "phone",
+      key: "phone",
+      width: 120,
+    },
+    {
+      title: "Địa chỉ",
+      dataIndex: "addressDetail",
+      key: "addressDetail",
+      width: 220,
+    },
+    {
+      title: "Khu vực/Tỉnh",
+      dataIndex: "province",
+      key: "province",
+      width: 130,
+    },
+    {
+      title: "Trạng thái",
+      dataIndex: "status",
+      key: "status",
+      width: 110,
+    },
+  ];
+  const dataSource: Partial<Customer>[] = [
+    {
+      customerCode: "C00001",
+      cifCode: "3T001",
+      customerName: "Nguyễn Văn A",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1990-01-01",
+      gender: "Nam",
+      nationality: "Việt Nam",
+      identityType: "CCCD",
+      identityNumber: "001234567890",
+      dateOfIssue: "2015-01-01",
+      placeOfIssue: "Hà Nội",
+      issuingAuthority: "CA Hà Nội",
+      expiryDate: "2030-01-01",
+      registrationBranch: "Chi nhánh 1",
+      status: "Hoạt động",
+      taxCode: "123456789",
+      email: "vana@example.com",
+      phone: "0901234567",
+      province: "Hà Nội",
+      district: "Đống Đa",
+      ward: "Phương Mai",
+      hamlet: "Tổ 1",
+      houseNumber: "23",
+      addressDetail: "23 Phương Mai, Đống Đa, Hà Nội",
+    },
+    {
+      customerCode: "C00002",
+      cifCode: "3T002",
+      customerName: "Trần Thị B",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1992-03-15",
+      gender: "Nữ",
+      nationality: "Việt Nam",
+      identityType: "CMND",
+      identityNumber: "002345678901",
+      dateOfIssue: "2014-03-10",
+      placeOfIssue: "Đà Nẵng",
+      issuingAuthority: "CA Đà Nẵng",
+      expiryDate: "2029-03-10",
+      registrationBranch: "Chi nhánh 2",
+      status: "Hoạt động",
+      taxCode: "234567891",
+      email: "thib@example.com",
+      phone: "0912345678",
+      province: "Đà Nẵng",
+      district: "Hải Châu",
+      ward: "Thạch Thang",
+      hamlet: "Tổ 2",
+      houseNumber: "45",
+      addressDetail: "45 Thạch Thang, Hải Châu, Đà Nẵng",
+    },
+    {
+      customerCode: "C00003",
+      cifCode: "3T003",
+      customerName: "Phạm Văn C",
+      customerGroup: "Doanh nghiệp",
+      dateOfBirth: "2010-07-01",
+      gender: "",
+      nationality: "Việt Nam",
+      identityType: "GPKD",
+      identityNumber: "DN123456789",
+      dateOfIssue: "2010-07-01",
+      placeOfIssue: "TP.HCM",
+      issuingAuthority: "Sở KHĐT TP.HCM",
+      expiryDate: "2030-07-01",
+      registrationBranch: "Chi nhánh 3",
+      status: "Hoạt động",
+      taxCode: "345678912",
+      email: "contact@congtyc.com",
+      phone: "0923456789",
+      province: "TP.HCM",
+      district: "Quận 1",
+      ward: "Bến Nghé",
+      hamlet: "Tổ 3",
+      houseNumber: "99",
+      addressDetail: "99 Bến Nghé, Quận 1, TP.HCM",
+    },
+    {
+      customerCode: "C00004",
+      cifCode: "3T004",
+      customerName: "Lê Thị D",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1988-08-08",
+      gender: "Nữ",
+      nationality: "Việt Nam",
+      identityType: "CCCD",
+      identityNumber: "003456789012",
+      dateOfIssue: "2016-08-08",
+      placeOfIssue: "Hải Phòng",
+      issuingAuthority: "CA Hải Phòng",
+      expiryDate: "2031-08-08",
+      registrationBranch: "Chi nhánh 4",
+      status: "Hoạt động",
+      taxCode: "456789123",
+      email: "led@example.com",
+      phone: "0934567890",
+      province: "Hải Phòng",
+      district: "Ngô Quyền",
+      ward: "Lạch Tray",
+      hamlet: "Tổ 4",
+      houseNumber: "12",
+      addressDetail: "12 Lạch Tray, Ngô Quyền, Hải Phòng",
+    },
+    {
+      customerCode: "C00005",
+      cifCode: "3T005",
+      customerName: "Công ty TNHH E",
+      customerGroup: "Doanh nghiệp",
+      dateOfBirth: "2015-09-09",
+      gender: "",
+      nationality: "Việt Nam",
+      identityType: "GPKD",
+      identityNumber: "DN234567890",
+      dateOfIssue: "2015-09-09",
+      placeOfIssue: "Bình Dương",
+      issuingAuthority: "Sở KHĐT Bình Dương",
+      expiryDate: "2035-09-09",
+      registrationBranch: "Chi nhánh 5",
+      status: "Hoạt động",
+      taxCode: "567891234",
+      email: "contact@congtye.com",
+      phone: "0945678901",
+      province: "Bình Dương",
+      district: "Thủ Dầu Một",
+      ward: "Phú Cường",
+      hamlet: "Tổ 5",
+      houseNumber: "88",
+      addressDetail: "88 Phú Cường, Thủ Dầu Một, Bình Dương",
+    },
+    {
+      customerCode: "C00006",
+      cifCode: "3T006",
+      customerName: "Ngô Văn F",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1995-10-10",
+      gender: "Nam",
+      nationality: "Việt Nam",
+      identityType: "CMND",
+      identityNumber: "004567890123",
+      dateOfIssue: "2017-10-10",
+      placeOfIssue: "Cần Thơ",
+      issuingAuthority: "CA Cần Thơ",
+      expiryDate: "2032-10-10",
+      registrationBranch: "Chi nhánh 6",
+      status: "Hoạt động",
+      taxCode: "678912345",
+      email: "f.ngo@example.com",
+      phone: "0956789012",
+      province: "Cần Thơ",
+      district: "Ninh Kiều",
+      ward: "Tân An",
+      hamlet: "Tổ 6",
+      houseNumber: "56",
+      addressDetail: "56 Tân An, Ninh Kiều, Cần Thơ",
+    },
+    {
+      customerCode: "C00007",
+      cifCode: "3T007",
+      customerName: "Đặng Thị G",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1993-11-15",
+      gender: "Nữ",
+      nationality: "Việt Nam",
+      identityType: "CCCD",
+      identityNumber: "005678901234",
+      dateOfIssue: "2018-11-15",
+      placeOfIssue: "Quảng Ninh",
+      issuingAuthority: "CA Quảng Ninh",
+      expiryDate: "2033-11-15",
+      registrationBranch: "Chi nhánh 7",
+      status: "Hoạt động",
+      taxCode: "789123456",
+      email: "g.dang@example.com",
+      phone: "0967890123",
+      province: "Quảng Ninh",
+      district: "Hạ Long",
+      ward: "Bạch Đằng",
+      hamlet: "Tổ 7",
+      houseNumber: "34",
+      addressDetail: "34 Bạch Đằng, Hạ Long, Quảng Ninh",
+    },
+    {
+      customerCode: "C00008",
+      cifCode: "3T008",
+      customerName: "Phan Văn H",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1996-12-20",
+      gender: "Nam",
+      nationality: "Việt Nam",
+      identityType: "CMND",
+      identityNumber: "006789012345",
+      dateOfIssue: "2019-12-20",
+      placeOfIssue: "Huế",
+      issuingAuthority: "CA Huế",
+      expiryDate: "2034-12-20",
+      registrationBranch: "Chi nhánh 8",
+      status: "Hoạt động",
+      taxCode: "891234567",
+      email: "h.phan@example.com",
+      phone: "0978901234",
+      province: "Thừa Thiên Huế",
+      district: "Huế",
+      ward: "Phú Hội",
+      hamlet: "Tổ 8",
+      houseNumber: "23A",
+      addressDetail: "23A Phú Hội, Huế, Thừa Thiên Huế",
+    },
+    {
+      customerCode: "C00009",
+      cifCode: "3T009",
+      customerName: "Công ty TNHH I",
+      customerGroup: "Doanh nghiệp",
+      dateOfBirth: "2012-04-04",
+      gender: "",
+      nationality: "Việt Nam",
+      identityType: "GPKD",
+      identityNumber: "DN345678901",
+      dateOfIssue: "2012-04-04",
+      placeOfIssue: "Nghệ An",
+      issuingAuthority: "Sở KHĐT Nghệ An",
+      expiryDate: "2032-04-04",
+      registrationBranch: "Chi nhánh 9",
+      status: "Hoạt động",
+      taxCode: "912345678",
+      email: "contact@congtyi.com",
+      phone: "0989012345",
+      province: "Nghệ An",
+      district: "Vinh",
+      ward: "Hưng Dũng",
+      hamlet: "Tổ 9",
+      houseNumber: "67",
+      addressDetail: "67 Hưng Dũng, Vinh, Nghệ An",
+    },
+    {
+      customerCode: "C00010",
+      cifCode: "3T010",
+      customerName: "Vũ Văn K",
+      customerGroup: "Cá nhân",
+      dateOfBirth: "1999-05-25",
+      gender: "Nam",
+      nationality: "Việt Nam",
+      identityType: "CCCD",
+      identityNumber: "007890123456",
+      dateOfIssue: "2020-05-25",
+      placeOfIssue: "Khánh Hòa",
+      issuingAuthority: "CA Khánh Hòa",
+      expiryDate: "2035-05-25",
+      registrationBranch: "Chi nhánh 10",
+      status: "Hoạt động",
+      taxCode: "123456780",
+      email: "k.vu@example.com",
+      phone: "0990123456",
+      province: "Khánh Hòa",
+      district: "Nha Trang",
+      ward: "Vĩnh Phước",
+      hamlet: "Tổ 10",
+      houseNumber: "101",
+      addressDetail: "101 Vĩnh Phước, Nha Trang, Khánh Hòa",
+    },
+  ];
+
+  return (
+    <PageTemplate
+      stickyHeader
+      stickyFooter
+      bodyStyle={{ paddingTop: 16 }}
+      header={
+        <Breadcrumb
+          items={[
+            {
+              title: <Link to="/app/master-data">Danh mục</Link>,
+            },
+            {
+              title: "Khách hàng",
+            },
+          ]}
+        />
+      }
+      subHeader={
+        <Flex gap={24} flex={1}>
+          <Search size="large" placeholder="Tìm kiếm" />
+          <Link to="create">
+            <Button type="primary" size="large" icon={<PlusOutlined />}>
+              Thêm mới
+            </Button>
+          </Link>
+        </Flex>
+      }
+      footer={
+        <Pagination showSizeChanger total={5000} pageSize={50} align="center" />
+      }
+    >
+      <DataTable<Partial<Customer>>
+        columnNoHeader="STT"
+        rowKey="customerCode"
+        columns={columns}
+        dataSource={dataSource}
+        onEdit={() => {}}
+        onDelete={() => {}}
+      />
+    </PageTemplate>
+  );
+};

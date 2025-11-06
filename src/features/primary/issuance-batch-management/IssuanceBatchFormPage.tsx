@@ -33,8 +33,9 @@ export const IssuanceBatchFormPage = () => {
   return (
     <PageTemplate
       stickyHeader
+      stickyFooter
       footerShadow
-      footerBg="#fff"
+      bodyStyle={{ paddingTop: 16 }}
       header={
         <Breadcrumb
           items={[
@@ -54,15 +55,30 @@ export const IssuanceBatchFormPage = () => {
           ]}
         />
       }
+      subHeader={
+        <Steps
+          current="1"
+          steps={[
+            {
+              key: "1",
+              label: "Bước 1: Thông tin phát hành",
+            },
+            {
+              key: "2",
+              label: "Bước 2: Chuyển phê duyệt",
+            },
+          ]}
+        />
+      }
       footer={
-        <Flex gap={10}>
+        <Flex gap={10} justify="flex-end">
           <Link to="/app/master-data/issuance-batch-management">
-            <Button>Hủy bỏ</Button>
+            <Button size="large">Hủy bỏ</Button>
           </Link>
-          <Button type="primary" onClick={handleSave}>
+          <Button type="primary" size="large" onClick={handleSave}>
             Lưu thông tin
           </Button>
-          <Button type="primary" onClick={handleSave}>
+          <Button type="primary" size="large" onClick={handleSave}>
             Lưu và Duyệt
           </Button>
         </Flex>
@@ -72,7 +88,6 @@ export const IssuanceBatchFormPage = () => {
         form={form}
         onFinish={handleSubmit}
         layout="vertical"
-        style={{ marginTop: 36, paddingRight: 50 }}
         initialValues={{
           x1: "CI00001",
           x2: "2024-SI-BNN-1342",
@@ -99,21 +114,6 @@ export const IssuanceBatchFormPage = () => {
           x23: "",
         }}
       >
-        <Steps
-          current="1"
-          steps={[
-            {
-              key: "1",
-              label: "Bước 1: Thông tin phát hành",
-            },
-            {
-              key: "2",
-              label: "Bước 2: Chuyển phê duyệt",
-            },
-          ]}
-          style={{ marginBottom: 30 }}
-        />
-
         <Flex vertical gap={20} style={{ marginBottom: 30 }}>
           <Flex align="center" gap={10}>
             <SectionTitle>Thông tin đợt phát hành</SectionTitle>

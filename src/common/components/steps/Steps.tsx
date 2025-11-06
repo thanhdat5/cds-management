@@ -13,11 +13,17 @@ interface StepsProps {
   steps: Step[];
   current: string;
   onChange?: (event: MouseEvent, key: string, step: Step) => void;
+  style?: React.CSSProperties;
 }
 
-export const Steps: React.FC<StepsProps> = ({ steps, current, onChange }) => {
+export const Steps: React.FC<StepsProps> = ({
+  steps,
+  current,
+  style,
+  onChange,
+}) => {
   return (
-    <Flex className={styles.step}>
+    <Flex className={styles.step} style={style}>
       {steps.map((step) => (
         <StepItem
           key={step.key}

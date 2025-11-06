@@ -1,0 +1,18 @@
+.appLogo {
+  height: var(--app-header-height);
+  color: var(--cds-color-primary);
+  text-decoration: none;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #2a6beb80;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  white-space: nowrap;
+  img {
+    width: auto;
+    height: 50px;
+  }
+}

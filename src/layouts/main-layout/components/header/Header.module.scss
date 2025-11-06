@@ -1,0 +1,18 @@
+.appHeader {
+  height: var(--app-header-height);
+  background-color: var(--cds-color-bg-base);
+  padding: 16px var(--app-layout-content-px);
+  .headerInner {
+    gap: 30px;
+    @media (max-width: 1199px) {
+      gap: 20px;
+    }
+  }
+  .headerIcons {
+    gap: 20px;
+    @media (max-width: 1199px) {
+      gap: 16px;
+      margin-left: auto;
+    }
+  }
+}

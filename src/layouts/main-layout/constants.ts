@@ -1,4 +1,5 @@
 export const APP_LAYOUT_CONFIG = {
   HEADER_HEIGHT: 80,
   SIDEBAR_WIDTH: 300,
+  LOGO_TEXT: "CHỨNG CHỈ TIỀN GỬI"
 };

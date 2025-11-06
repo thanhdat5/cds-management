@@ -1,25 +1,14 @@
 .inner {
-  padding: 37px 53px 100px 50px;
-  @media (max-width: 1920px) {
-    padding: 16px 30px;
-  }
-  @media (max-width: 1199px) {
-    padding: 16px 20px;
-  }
+  background-color: var(--cds-color-bg-base);
+  padding: 0 var(--app-layout-content-px);
 }
 .header {
-  margin-bottom: 36px;
-  @media (max-width: 600px) {
-    gap: 16px !important;
-  }
-  h1 {
-    font-family: "Barlow", sans-serif;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 38px;
-    color: #464255;
-    margin: 0;
-  }
+  background-color: var(--cds-color-bg-base);
+  padding: 16px var(--app-layout-content-px) 10px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 .pickerTogger {
   cursor: pointer;

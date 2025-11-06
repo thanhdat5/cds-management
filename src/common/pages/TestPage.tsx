@@ -501,13 +501,6 @@ export const TestPage = () => {
             </Flex>
           </Flex>
         </div>
-
-        {/* Page Footer */}
-        <div className="page-footer">
-          <button className="ant-btn ant-btn-default">Hủy bỏ</button>
-          <button className="ant-btn ant-btn-primary">Lưu nháp</button>
-          <button className="ant-btn ant-btn-primary">Lưu và duyệt</button>
-        </div>
       </div>
     </Flex>
   );

@@ -1,5 +1,5 @@
 import { Avatar, Badge, type AvatarProps, type BadgeProps } from "antd";
-
+import styles from "./IconCard.module.scss";
 /**
  * IconCardProps
  * - Inherits all AvatarProps except 'size' and 'shape' (fixed internally for consistency).
@@ -28,7 +28,7 @@ export const IconCard: React.FC<IconCardProps> = ({
   ...rest
 }) => {
   return (
-    <Badge count={badgeCount} color={color}>
+    <Badge count={badgeCount} color={color} className={styles.iconCard}>
       <Avatar
         shape="square" // Fixed shape for UI consistency
         size="large" // Fixed size for card context

@@ -120,7 +120,7 @@ export const cdsTheme: ThemeConfig = {
       titleMarginBottom: 0,
     },
     Avatar: {
-      borderRadiusLG: 10,
+      borderRadiusLG: 12,
       containerSizeSM: 20,
     },
   },

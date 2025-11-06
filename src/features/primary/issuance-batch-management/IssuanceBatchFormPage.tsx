@@ -1,8 +1,7 @@
+import { SectionTitle, Steps } from "@common/components";
 import { PageFooter } from "@templates/page-footer/PageFooter";
 import { MasterDataPageInner } from "@templates/page-inner/PageInner";
-import { PlusCircleOutlined } from "@ant-design/icons";
 import {
-  Avatar,
   Button,
   Col,
   DatePicker,
@@ -12,13 +11,11 @@ import {
   InputNumber,
   Row,
   Select,
-  Steps,
-  Typography,
 } from "antd";
 import type { InputNumberProps } from "antd/lib";
+import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
-import dayjs from "dayjs";
 const { TextArea } = Input;
 export const IssuanceBatchFormPage = () => {
   const [form] = Form.useForm<Partial<IssuanceBatch>>();
@@ -94,33 +91,23 @@ export const IssuanceBatchFormPage = () => {
         }}
       >
         <Steps
-          style={{ marginBottom: 30 }}
-          items={[
+          current="1"
+          steps={[
             {
-              title: "Bước 1: Thông tin phát hành",
+              key: "1",
+              label: "Bước 1: Thông tin phát hành",
             },
             {
-              title: "Bước 2: Chuyển phê duyệt",
+              key: "2",
+              label: "Bước 2: Chuyển phê duyệt",
             },
           ]}
+          style={{ marginBottom: 30 }}
         />
 
         <Flex vertical gap={20} style={{ marginBottom: 30 }}>
           <Flex align="center" gap={10}>
-            <Avatar
-              icon={<PlusCircleOutlined />}
-              style={{ backgroundColor: "#CDE4FE", color: "#2A6BEB" }}
-            />
-            <Typography
-              color="#394B71"
-              style={{
-                fontSize: "16px",
-                fontWeight: 500,
-                fontFamily: "Inter",
-              }}
-            >
-              Thông tin đợt phát hành
-            </Typography>
+            <SectionTitle>Thông tin đợt phát hành</SectionTitle>
           </Flex>
           <Row gutter={40}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
@@ -189,7 +176,7 @@ export const IssuanceBatchFormPage = () => {
                 <InputNumber<number>
                   formatter={formatter}
                   parser={(value) =>
-                    value?.replace(/\$\s?|(,*)/g, "") as unknown as number
+                    value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
                   }
                   style={{ width: "100%" }}
                 />
@@ -200,7 +187,7 @@ export const IssuanceBatchFormPage = () => {
                 <InputNumber<number>
                   formatter={formatter}
                   parser={(value) =>
-                    value?.replace(/\$\s?|(,*)/g, "") as unknown as number
+                    value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
                   }
                   style={{ width: "100%" }}
                 />
@@ -211,7 +198,7 @@ export const IssuanceBatchFormPage = () => {
                 <InputNumber<number>
                   formatter={formatter}
                   parser={(value) =>
-                    value?.replace(/\$\s?|(,*)/g, "") as unknown as number
+                    value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
                   }
                   style={{ width: "100%" }}
                 />
@@ -245,20 +232,7 @@ export const IssuanceBatchFormPage = () => {
 
         <Flex vertical gap={20}>
           <Flex align="center" gap={10} style={{ marginBottom: 20 }}>
-            <Avatar
-              icon={<PlusCircleOutlined />}
-              style={{ backgroundColor: "#CDE4FE", color: "#2A6BEB" }}
-            />
-            <Typography
-              color="#394B71"
-              style={{
-                fontSize: "16px",
-                fontWeight: 500,
-                fontFamily: "Inter",
-              }}
-            >
-              Thông tin lãi suất và hạch toán
-            </Typography>
+            <SectionTitle>Thông tin lãi suất và hạch toán</SectionTitle>
           </Flex>
           <Row gutter={40}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>

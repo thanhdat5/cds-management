@@ -1,24 +1,14 @@
-.inner {
-  margin-left: 40px;
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 16px var(--app-layout-content-px) 25px;
+  margin-bottom: 30px;
   background-color: #fff;
-  height: 100%;
-  padding: 0 36px;
-  @media (max-width: 1920px) {
-    margin-left: 30px;
-  }
-  @media (max-width: 1199px) {
-    margin-left: 20px;
-    padding: 0 20px;
-  }
 }
-.pageTitle {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 150%;
-  letter-spacing: -0.01em;
-  color: #0b1238;
-  padding-top: 27px;
+.inner {
+  height: 100%;
+  padding: 0 var(--app-layout-content-px) var(--app-layout-content-px);
 }
 .items {
   width: 1524px;
@@ -27,10 +17,6 @@
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 32px 24px;
   margin: 0 auto;
-  max-height: calc(100% - 75px);
-  overflow-y: auto;
-  padding-top: 77px;
-  padding-bottom: 40px;
   @media (max-width: 1920px) {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;

@@ -45,15 +45,15 @@ export const Sidebar = () => {
       items
         .filter((item) => pathName.includes(`${item?.key}`))
         ?.map((item) => item?.key?.toString() || "") || [];
-    let selected = pathName;
+    let selected = "";
     Object.keys(APP_MENU).forEach((key) => {
       APP_MENU[key]?.children?.forEach((child) => {
         if (child.url && pathName.includes(child.url)) {
-          selected = `${APP_MENU[key].url}/${child.url}`;
+          selected = `${APP_MENU[key].url}/${child.hidden ? "" : child.url}`;
         }
       });
     });
-    return { open, selected };
+    return { open, selected: selected || pathName };
   }, [items, location.pathname]);
   const [openKeys, setOpenKeys] = useState(menuKeys.open || []);
   const [selectedKeys, setSelectedKeys] = useState([menuKeys.selected]);

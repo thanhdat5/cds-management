@@ -1,14 +1,14 @@
 import { Button } from "@common/components";
 import { PageTemplate } from "@common/components/templates";
 import {
-    Breadcrumb,
-    Col,
-    Flex,
-    Form,
-    Input,
-    InputNumber,
-    Row,
-    Select,
+  Breadcrumb,
+  Col,
+  Flex,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
 } from "antd";
 import { Link } from "react-router-dom";
 import type { Currency } from "./currencyTypes";
@@ -105,7 +105,18 @@ export const CurrencyFormPage = () => {
           </Col>
           <Col span={24} md={{ span: 12 }}>
             <Form.Item name="exchangeRate" label="Tỉ giá quy đổi">
-              <InputNumber style={{ width: "100%", textAlign: "right" }} />
+              <InputNumber<number>
+                style={{ width: "100%" }}
+                min={0}
+                formatter={(value) =>
+                  value !== undefined && value !== null
+                    ? value.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    : ""
+                }
+                parser={(value) =>
+                  value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
+                }
+              />
             </Form.Item>
           </Col>
           <Col span={24} md={{ span: 12 }}>

@@ -3,7 +3,11 @@ import { CurrencyFormPage } from "./currency/CurrencyFormPage";
 import { CurrencyPage } from "./currency/CurrencyPage";
 import { DenominationFormPage } from "./denomination/DenominationFormPage";
 import { DenominationPage } from "./denomination/DenominationPage";
+import { HolidayFormPage } from "./holiday/HolidayFormPage";
+import { HolidayPage } from "./holiday/HolidayPage";
 import { MasterDataPage } from "./master-data/MasterDataPage";
+import { OrganizationFormPage } from "./organization/OrganizationFormPage";
+import { OrganizationPage } from "./organization/OrganizationPage";
 import { PermissionFormPage } from "./permission/PermissionFormPage";
 import { PermissionPage } from "./permission/PermissionPage";
 import { TenorFormPage } from "./tenor/TenorFormPage";
@@ -103,6 +107,42 @@ export default [
       {
         path: "update/:id",
         element: <DenominationFormPage />,
+      },
+    ],
+  },
+  {
+    path: "holiday",
+    element: <Outlet />,
+    children: [
+      {
+        index: true,
+        element: <HolidayPage />,
+      },
+      {
+        path: "create",
+        element: <HolidayFormPage />,
+      },
+      {
+        path: "update/:id",
+        element: <HolidayFormPage />,
+      },
+    ],
+  },
+  {
+    path: "organization",
+    element: <Outlet />,
+    children: [
+      {
+        index: true,
+        element: <OrganizationPage />,
+      },
+      {
+        path: "create",
+        element: <OrganizationFormPage />,
+      },
+      {
+        path: "update/:id",
+        element: <OrganizationFormPage />,
       },
     ],
   },

@@ -125,8 +125,8 @@ export const cdsTheme: ThemeConfig = {
       containerSizeSM: 20,
     },
     Table: {
-      cellPaddingBlock: 8,
-      cellPaddingInline: 8,
+      cellPaddingBlock: 12,
+      cellPaddingInline: 12,
     },
   },
 };

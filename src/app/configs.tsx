@@ -1,11 +1,11 @@
 import {
-    AlignLeftOutlined,
-    CalendarOutlined,
-    FileOutlined,
-    HomeOutlined,
-    PieChartOutlined,
-    SettingOutlined,
-    UsergroupAddOutlined,
+  AlignLeftOutlined,
+  CalendarOutlined,
+  FileOutlined,
+  HomeOutlined,
+  PieChartOutlined,
+  SettingOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import type { ReactNode } from "react";
 
@@ -69,10 +69,10 @@ export const APP_MENU: AppMenu = {
         icon: `/icons/icon-allocation.svg`,
       },
       {
-        url: "unit",
+        url: "organization",
         label: "Đơn vị",
         hidden: true,
-        icon: `/icons/icon-unit.svg`,
+        icon: `/icons/icon-organization.svg`,
       },
       { url: "holiday", label: "Ngày nghỉ", icon: `/icons/icon-holiday.svg` },
       {

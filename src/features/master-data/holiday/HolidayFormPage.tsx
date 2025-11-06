@@ -1,27 +1,44 @@
 import { Button } from "@common/components";
 import { PageTemplate } from "@common/components/templates";
 import {
-  Breadcrumb,
-  Col,
-  Flex,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
+    Breadcrumb,
+    Col,
+    DatePicker,
+    Flex,
+    Form,
+    Input,
+    Row,
+    Select,
 } from "antd";
+import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import type { Denomination } from "./denominationTypes";
+import type { Holiday } from "./holidayTypes";
 const { TextArea } = Input;
-
-export const DenominationFormPage = () => {
-  const [form] = Form.useForm<Partial<Denomination>>();
-  const handleSubmit = async (values: Partial<Denomination>) => {
+export const HolidayFormPage = () => {
+  const [form] = Form.useForm<Partial<Holiday>>();
+  const handleSubmit = async (values: Partial<Holiday>) => {
     console.log(values);
   };
   const handleSave = () => {
     form.submit();
   };
+
+  const holidayTypeOptions = [
+    { value: "Lễ lớn", label: "Lễ lớn" },
+    { value: "Lễ truyền thống", label: "Lễ truyền thống" },
+    { value: "Lễ tôn giáo", label: "Lễ tôn giáo" },
+  ];
+
+  const countryOptions = [
+    { value: "Việt Nam", label: "Việt Nam" },
+    { value: "Hoa Kỳ", label: "Hoa Kỳ" },
+    { value: "Nhật Bản", label: "Nhật Bản" },
+  ];
+
+  const statusOptions = [
+    { value: "Đang áp dụng", label: "Đang áp dụng" },
+    { value: "Ngừng áp dụng", label: "Ngừng áp dụng" },
+  ];
   return (
     <PageTemplate
       stickyHeader
@@ -36,17 +53,17 @@ export const DenominationFormPage = () => {
               title: <Link to="/app/master-data">Danh mục</Link>,
             },
             {
-              title: <Link to="/app/master-data/denomination">Mệnh giá</Link>,
+              title: <Link to="/app/master-data/holiday">Ngày nghỉ</Link>,
             },
             {
-              title: "Tạo mới Mệnh giá",
+              title: "Tạo mới Ngày nghỉ",
             },
           ]}
         />
       }
       footer={
         <Flex gap={10} justify="flex-end">
-          <Link to="/app/master-data/denomination">
+          <Link to="/app/master-data/holiday">
             <Button size="large">Hủy bỏ</Button>
           </Link>
           <Button type="primary" size="large" onClick={handleSave}>
@@ -55,17 +72,17 @@ export const DenominationFormPage = () => {
         </Flex>
       }
     >
-      <Form<Partial<Denomination>>
+      <Form
         form={form}
         onFinish={handleSubmit}
         layout="vertical"
         initialValues={{
-          code: "DENOM100K",
-          name: "Mệnh giá 100,000",
-          value: 100000,
-          currencyCode: "VND",
-          displayLabel: "100 nghìn đồng",
-          status: "Đang hoạt động",
+          code: "HOL2025-01",
+          name: "Tết Dương lịch",
+          type: "Lễ lớn",
+          date: dayjs("2025-01-01", "YYYY-MM-DD"),
+          country: "Việt Nam",
+          status: "Đang áp dụng",
           note: "",
         }}
       >
@@ -73,7 +90,7 @@ export const DenominationFormPage = () => {
           <Col span={24} md={{ span: 12 }}>
             <Form.Item
               name="code"
-              label="Mã mệnh giá"
+              label="Mã ngày nghỉ"
               rules={[{ required: true }]}
             >
               <Input />
@@ -82,7 +99,7 @@ export const DenominationFormPage = () => {
           <Col span={24} md={{ span: 12 }}>
             <Form.Item
               name="name"
-              label="Tên mệnh giá"
+              label="Tên ngày nghỉ"
               rules={[{ required: true }]}
             >
               <Input />
@@ -90,42 +107,38 @@ export const DenominationFormPage = () => {
           </Col>
           <Col span={24} md={{ span: 12 }}>
             <Form.Item
-              name="value"
-              label="Giá trị mệnh giá"
+              name="type"
+              label="Loại ngày nghỉ"
               rules={[{ required: true }]}
             >
-              <InputNumber<number>
-                style={{ width: "100%" }}
-                min={0}
-                formatter={(value) =>
-                  value !== undefined && value !== null
-                    ? value.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ",")
-                    : ""
-                }
-                parser={(value) =>
-                  value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
-                }
-              />
+              <Select options={holidayTypeOptions} />
             </Form.Item>
           </Col>
           <Col span={24} md={{ span: 12 }}>
-            <Form.Item name="currencyCode" label="Đơn vị tiền tệ">
-              <Select options={[{ value: "VND", label: "Việt Nam Đồng" }]} />
+            <Form.Item
+              name="date"
+              label="Ngày dương lịch"
+              rules={[{ required: true }]}
+            >
+              <DatePicker style={{ width: "100%" }} format="DD/MM/YYYY" />
             </Form.Item>
           </Col>
           <Col span={24} md={{ span: 12 }}>
-            <Form.Item name="displayLabel" label="Mệnh giá hiển thị">
-              <Input />
+            <Form.Item
+              name="country"
+              label="Quốc gia"
+              rules={[{ required: true }]}
+            >
+              <Select options={countryOptions} />
             </Form.Item>
           </Col>
           <Col span={24} md={{ span: 12 }}>
-            <Form.Item name="status" label="Trạng thái">
-              <Select
-                options={[
-                  { value: "Đang hoạt động", label: "Đang hoạt động" },
-                  { value: "Ngừng sử dụng", label: "Ngừng sử dụng" },
-                ]}
-              />
+            <Form.Item
+              name="status"
+              label="Trạng thái"
+              rules={[{ required: true }]}
+            >
+              <Select options={statusOptions} />
             </Form.Item>
           </Col>
           <Col span={24}>

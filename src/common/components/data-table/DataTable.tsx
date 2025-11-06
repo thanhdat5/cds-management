@@ -135,6 +135,7 @@ const DataTableComponent = <T extends object>({
           fixed="left"
           width={60}
           key="no"
+          align="center"
         />
       )}
 

@@ -1,35 +1,80 @@
-import { Button, SectionTitle, Steps } from "@common/components";
+import { Button, Steps } from "@common/components";
 import { PageTemplate } from "@common/components/templates";
-import {
-  Breadcrumb,
-  Col,
-  DatePicker,
-  Flex,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
-import type { InputNumberProps } from "antd/lib";
+import { Breadcrumb, Flex, Form } from "antd";
 import dayjs from "dayjs";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { IssuanceBatchApprovalHistory } from "./components/IssuanceBatchApprovalHistory";
+import { IssuanceBatchApprovalStep } from "./components/IssuanceBatchApprovalStep";
+import { IssuanceBatchInfoStep } from "./components/IssuanceBatchInfoStep";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
-const { TextArea } = Input;
+
 export const IssuanceBatchFormPage = () => {
-  const [form] = Form.useForm<Partial<IssuanceBatch>>();
-  const handleSubmit = async (values: Partial<IssuanceBatch>) => {
+  const [formStep1] = Form.useForm<Partial<IssuanceBatch>>();
+  const [formStep2] = Form.useForm<Partial<IssuanceBatch>>();
+  const [step, setStep] = useState(1);
+
+  const handleSubmitStep1 = async (values: Partial<IssuanceBatch>) => {
+    console.log(values);
+    setStep(2);
+  };
+  const handleSubmitStep2 = async (values: Partial<IssuanceBatch>) => {
     console.log(values);
   };
-  const handleSave = () => {
-    form.submit();
-  };
+
   const dateFormat = "DD/MM/YYYY";
-  const formatter: InputNumberProps<number>["formatter"] = (value) => {
-    const [start, end] = `${value}`.split(".") || [];
-    const v = `${start}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return `${end ? `${v}.${end}` : `${v}`}`;
+  const basicInfoInitialValues = {
+    issuanceBatchCode: "CI00001",
+    certificateName: "2024-SI-BNN-1342",
+    certificateGroup: "2024-SI-BNN-1342",
+    issuanceChannel: "Quầy",
+    issuanceType: "INHLD",
+    agencyBranch: "Quầy",
+    customerAgency: "SSI",
+    currency: "VNĐ",
+    term: "12 T",
+    quantityIssued: 1000000,
+    parValue: 1000000,
+    totalLimit: 100000000000,
+    startDate: dayjs("21/12/2026", dateFormat),
+    maturityDate: dayjs("21/12/2026", dateFormat),
+    status: "INHLD",
+    customerAccountNumber: "1234-acb",
+    customerBank: "1234 -ACB",
+    depositAccountDate: dayjs("21/12/2026", dateFormat),
+    isTransferable: "Có",
+    interestPaymentMethod: "Cuối kỳ",
+    interestType: "FIXED",
+    note: "",
+    // FIXED
+    annualInterestRate: 12,
+    preMaturityInterestRate: 5,
+    // STEP
+    stepRates: [
+      {
+        fromDate: dayjs("21/12/2026", dateFormat),
+        toDate: dayjs("21/12/2026", dateFormat),
+        rate: 10,
+      },
+    ],
+    // FLOAD
+    fromDate: dayjs("21/12/2026", dateFormat),
+    toDate: dayjs("21/12/2026", dateFormat),
+    interestRate: "10%",
+    referenceTerm: "12T",
+    interestFrequency: "12T",
+    spreadMargin: "10%",
   };
+  const approvalInitialValues = {
+    department: "Bộ phận BO",
+    approver: "Đặng Kiều Oanh",
+    relatedUser: "Đặng Kiều Oanh",
+    approvalStatus: "INHLD",
+    approvalDate: dayjs("21/12/2026", dateFormat),
+    deadline: dayjs("21/12/2026", dateFormat),
+    approvalNote: "",
+  };
+
   return (
     <PageTemplate
       stickyHeader
@@ -57,7 +102,7 @@ export const IssuanceBatchFormPage = () => {
       }
       subHeader={
         <Steps
-          current="1"
+          current={step.toString()}
           steps={[
             {
               key: "1",
@@ -72,221 +117,69 @@ export const IssuanceBatchFormPage = () => {
       }
       footer={
         <Flex gap={10} justify="flex-end">
-          <Link to="/app/master-data/issuance-batch-management">
-            <Button size="large">Hủy bỏ</Button>
-          </Link>
-          <Button type="primary" size="large" onClick={handleSave}>
-            Lưu thông tin
-          </Button>
-          <Button type="primary" size="large" onClick={handleSave}>
-            Lưu và Duyệt
-          </Button>
+          {step === 1 ? (
+            <>
+              <Link to="/app/primary/issuance-batch-management">
+                <Button size="large">Hủy bỏ</Button>
+              </Link>
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => formStep1.submit()}
+              >
+                Lưu thông tin
+              </Button>
+            </>
+          ) : (
+            <></>
+          )}
+          {step === 2 ? (
+            <>
+              <Button size="large" onClick={() => setStep(1)}>
+                Hủy bỏ
+              </Button>
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => formStep2.submit()}
+              >
+                Lưu và Duyệt
+              </Button>
+            </>
+          ) : (
+            <></>
+          )}
         </Flex>
       }
     >
-      <Form<Partial<IssuanceBatch>>
-        form={form}
-        onFinish={handleSubmit}
-        layout="vertical"
-        initialValues={{
-          x1: "CI00001",
-          x2: "2024-SI-BNN-1342",
-          x3: "2024-SI-BNN-1342",
-          x4: "Quầy",
-          x5: "INHLD",
-          x6: "Quầy",
-          x7: "SSI",
-          x8: "VNĐ",
-          x9: "12 T",
-          x10: 1000000,
-          x11: 1000000,
-          x12: 100000000000,
-          x13: dayjs("21/12/2026", dateFormat),
-          x14: dayjs("21/12/2026", dateFormat),
-          x15: "INHLD",
-          x16: "1234-acb",
-          x17: "1234 -ACB",
-          x18: dayjs("21/12/2026", dateFormat),
-          x19: "Có",
-          x20: "Cuối kỳ",
-          x21: "FIXED",
-          x22: 12,
-          x23: "",
-        }}
-      >
-        <Flex vertical gap={20} style={{ marginBottom: 30 }}>
-          <Flex align="center" gap={10}>
-            <SectionTitle>Thông tin đợt phát hành</SectionTitle>
-          </Flex>
-          <Row gutter={40}>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item
-                name="x1"
-                label="Mã đợt phát hành"
-                rules={[{ required: true }]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item
-                name="x2"
-                label="Tên chứng chỉ phát hành"
-                rules={[{ required: true }]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x3" label="Nhóm chứng chỉ tiền gửi">
-                <Select
-                  options={[
-                    { value: "2024-SI-BNN-1342", label: "2024-SI-BNN-1342" },
-                  ]}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item
-                name="x4"
-                label="Kênh phát hành"
-                rules={[{ required: true }]}
-              >
-                <Select options={[{ value: "Quầy", label: "Quầy" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x5" label="Kiểu phát hành">
-                <Select options={[{ value: "INHLD", label: "INHLD" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x6" label="Đại lý/ Chi nhánh phát hành">
-                <Select options={[{ value: "Quầy", label: "Quầy" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x7" label="Khách hàng/Đại lý">
-                <Select options={[{ value: "SSI", label: "SSI" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x8" label="Tiền tệ">
-                <Select options={[{ value: "VNĐ", label: "VNĐ" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x9" label="Kỳ hạn">
-                <Select options={[{ value: "12 T", label: "12 T" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x10" label="Số lượng phát hành">
-                <InputNumber<number>
-                  formatter={formatter}
-                  parser={(value) =>
-                    value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
-                  }
-                  style={{ width: "100%" }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x11" label="Mệnh giá">
-                <InputNumber<number>
-                  formatter={formatter}
-                  parser={(value) =>
-                    value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
-                  }
-                  style={{ width: "100%" }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x12" label="Tổng hạn mức cho đợt phát hành">
-                <InputNumber<number>
-                  formatter={formatter}
-                  parser={(value) =>
-                    value?.replaceAll(/\$\s?|(,*)/g, "") as unknown as number
-                  }
-                  style={{ width: "100%" }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item
-                name="x13"
-                label="Ngày khởi tạo"
-                rules={[{ required: true }]}
-              >
-                <DatePicker format={dateFormat} style={{ width: "100%" }} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item
-                name="x14"
-                label="Ngày đáo hạn"
-                rules={[{ required: true }]}
-              >
-                <DatePicker format={dateFormat} style={{ width: "100%" }} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x15" label="Trạng thái">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Flex>
+      {/* Step 1 */}
+      {step === 1 ? (
+        <Form<Partial<IssuanceBatch>>
+          form={formStep1}
+          onFinish={handleSubmitStep1}
+          layout="vertical"
+          initialValues={basicInfoInitialValues}
+        >
+          <IssuanceBatchInfoStep />
+        </Form>
+      ) : (
+        <></>
+      )}
 
-        <Flex vertical gap={20}>
-          <Flex align="center" gap={10} style={{ marginBottom: 20 }}>
-            <SectionTitle>Thông tin lãi suất và hạch toán</SectionTitle>
-          </Flex>
-          <Row gutter={40}>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x16" label="Số TK Khách hàng">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x17" label="Ngân hàng khách hàng">
-                <Select
-                  options={[{ value: "1234 -ACB", label: "1234 -ACB" }]}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x18" label="Số TK ngân hàng lưu giữ gốc CD ">
-                <DatePicker format={dateFormat} style={{ width: "100%" }} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x19" label="Cho phép chuyển nhượng">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x20" label="Hình thức trả lãi">
-                <Select options={[{ value: "Cuối kỳ", label: "Cuối kỳ" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x21" label="Loại lãi suất">
-                <Select options={[{ value: "FIXED", label: "FIXED" }]} />
-              </Form.Item>
-            </Col>
-            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <Form.Item name="x22" label="Lãi suất (%/năm)">
-                <InputNumber<number> style={{ width: "100%" }} suffix="%" />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Form.Item name="x23" label="Ghi chú">
-            <TextArea rows={4} />
-          </Form.Item>
-        </Flex>
-      </Form>
+      {/* Step 2 */}
+      {step === 2 ? (
+        <Form<Partial<IssuanceBatch>>
+          form={formStep2}
+          onFinish={handleSubmitStep2}
+          layout="vertical"
+          initialValues={approvalInitialValues}
+        >
+          <IssuanceBatchApprovalStep />
+          <IssuanceBatchApprovalHistory />
+        </Form>
+      ) : (
+        <></>
+      )}
     </PageTemplate>
   );
 };

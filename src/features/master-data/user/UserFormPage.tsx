@@ -1,6 +1,9 @@
-import { MasterDataPageInner } from "@templates/page-inner/PageInner";
+import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
+import { Button } from "@common/components";
+import { PageTemplate } from "@common/components/templates";
 import {
   Avatar,
+  Breadcrumb,
   Checkbox,
   Col,
   DatePicker,
@@ -14,12 +17,10 @@ import {
   Typography,
   type TreeProps,
 } from "antd";
-import { Link } from "react-router-dom";
-import type { User } from "./userTypes";
 import { useState } from "react";
-import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import { PageFooter } from "../../../templates/page-footer/PageFooter";
-import { Button } from "@common/components";
+import { Link } from "react-router-dom";
+import styles from "./UserFormPage.module.scss";
+import type { User } from "./userTypes";
 const { Title } = Typography;
 const { Search } = Input;
 export const UserFormPage = () => {
@@ -54,31 +55,44 @@ export const UserFormPage = () => {
   };
   const handleSave = () => {};
   return (
-    <MasterDataPageInner
-      breadcrumbItems={[
-        {
-          title: <Link to="/app/master-data/user">Người sử dụng</Link>,
-        },
-        {
-          title: "Tạo mới Người sử dụng",
-        },
-      ]}
+    <PageTemplate
+      stickyHeader
+      stickyFooter
+      footerShadow
+      header={
+        <Breadcrumb
+          items={[
+            {
+              title: <Link to="/app/master-data">Danh mục</Link>,
+            },
+            {
+              title: <Link to="/app/master-data/user">Người sử dụng</Link>,
+            },
+            {
+              title: "Tạo mới Người sử dụng",
+            },
+          ]}
+        />
+      }
       footer={
-        <PageFooter>
-          <Button>
-            <Link to="/app/master-data/user">Hủy</Link>
-          </Button>
+        <Flex gap={10} justify="flex-end">
+          <Link to="/app/master-data/user">
+            <Button size="large">Hủy</Button>
+          </Link>
           {activeTab === "1" ? (
-            <Button type="primary" onClick={handleNext}>
+            <Button size="large" type="primary" onClick={handleNext}>
               Tiếp tục
             </Button>
           ) : (
-            <Button type="primary" onClick={handleSave}>
+            <Button size="large" type="primary" onClick={handleSave}>
               Lưu
             </Button>
           )}
-        </PageFooter>
+        </Flex>
       }
+      mainHeaderStyle={{ borderWidth: 1 }}
+      headerStyle={{ paddingBottom: 0 }}
+      bodyStyle={{ paddingTop: 0 }}
     >
       <Tabs
         activeKey={activeTab}
@@ -88,13 +102,8 @@ export const UserFormPage = () => {
             key: "1",
             label: "Thông tin người dùng",
             children: (
-              <Form
-                form={form}
-                onFinish={handleSubmit}
-                layout="vertical"
-                style={{ marginTop: 36, paddingRight: 50 }}
-              >
-                <Row gutter={40}>
+              <Form form={form} onFinish={handleSubmit} layout="vertical">
+                <Row gutter={32}>
                   <Col span={24} xl={{ span: 6 }}>
                     <Flex
                       vertical
@@ -163,8 +172,8 @@ export const UserFormPage = () => {
             key: "2",
             label: "Phân quyền",
             children: (
-              <Row style={{ rowGap: 30 }}>
-                <Col xl={{ span: 10 }} xs={{ span: 24 }}>
+              <Row gutter={[32, 32]}>
+                <Col xxl={11} md={{ span: 10 }} xs={{ span: 24 }}>
                   <Title level={4}>Quyền chưa gán (4)</Title>
                   <Flex vertical gap={30}>
                     <Search placeholder="Nhập tên quyền" />
@@ -183,31 +192,22 @@ export const UserFormPage = () => {
                     />
                   </Flex>
                 </Col>
-                <Col xl={{ span: 4 }} lg={{ span: 24 }}>
+                <Col xxl={2} md={{ span: 4 }} xs={{ span: 24 }}>
                   <Flex
                     align="center"
                     justify="center"
-                    style={{ height: "100%" }}
+                    gap={16}
+                    className={styles.controls}
                   >
-                    <Row
-                      style={{
-                        gap: 24,
-                      }}
-                    >
-                      <Col xl={{ span: 24 }} xs={{ span: 4 }}>
-                        <Button style={{ width: "100%" }} type="secondary">
-                          <DoubleLeftOutlined />
-                        </Button>
-                      </Col>
-                      <Col xl={{ span: 24 }} xs={{ span: 4 }}>
-                        <Button style={{ width: "100%" }} type="secondary">
-                          <DoubleRightOutlined />
-                        </Button>
-                      </Col>
-                    </Row>
+                    <Button style={{ width: "100%" }} type="secondary">
+                      <DoubleLeftOutlined />
+                    </Button>
+                    <Button style={{ width: "100%" }} type="secondary">
+                      <DoubleRightOutlined />
+                    </Button>
                   </Flex>
                 </Col>
-                <Col xl={{ span: 10 }} xs={{ span: 24 }}>
+                <Col xxl={11} md={{ span: 10 }} xs={{ span: 24 }}>
                   <Title level={4}>Quyền đã gán (8)</Title>
                   <Flex vertical gap={30}>
                     <Search placeholder="Nhập tên quyền" />
@@ -224,6 +224,6 @@ export const UserFormPage = () => {
           },
         ]}
       />
-    </MasterDataPageInner>
+    </PageTemplate>
   );
 };

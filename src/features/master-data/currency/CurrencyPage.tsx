@@ -5,42 +5,63 @@ import { PageTemplate } from "@common/components/templates";
 import { Breadcrumb, Flex, Input, Pagination } from "antd";
 import type { ColumnType } from "antd/es/table";
 import { Link } from "react-router-dom";
-import type { Tenor } from "./tenorTypes";
+import type { Currency } from "./currencyTypes";
 const { Search } = Input;
-export const TenorPage = () => {
-  const columns: ColumnType<Partial<Tenor>>[] = [
+export const CurrencyPage = () => {
+  const columns: ColumnType<Partial<Currency>>[] = [
     {
-      key: "tenorId",
-      title: "Mã kỳ hạn",
-      dataIndex: "tenorId",
-      fixed: "left",
+      title: "Mã tiền tệ",
+      dataIndex: "code",
+      key: "code",
+      width: 120,
     },
-    { key: "tenorName", title: "Tên kỳ hạn", dataIndex: "tenorName" },
-    { key: "tenorUnit", title: "Đơn vị kỳ hạn", dataIndex: "tenorUnit" },
-    { key: "tenorValue", title: "Giá trị kỳ hạn", dataIndex: "tenorValue" },
-    { key: "days", title: "Số ngày quy đổi", dataIndex: "days" },
+    {
+      title: "Tên tiền tệ",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Ký hiệu tiền tệ",
+      dataIndex: "symbol",
+      key: "symbol",
+      width: 120,
+    },
+    {
+      title: "Tỉ giá quy đổi",
+      dataIndex: "exchangeRate",
+      key: "exchangeRate",
+      align: "right",
+      width: 150,
+      render: (rate) => rate?.toLocaleString(),
+    },
+    {
+      title: "Trạng thái",
+      width: 160,
+      dataIndex: "status",
+      key: "status",
+    },
   ];
-  const dataSource: Partial<Tenor>[] = [
+  const dataSource: Partial<Currency>[] = [
     {
-      tenorId: "6T",
-      tenorName: "6 tháng",
-      tenorUnit: "Tháng",
-      tenorValue: 6,
-      days: 180,
+      code: "USD",
+      name: "US Dollar",
+      symbol: "$",
+      exchangeRate: 24100,
+      status: "Đang hoạt động",
     },
     {
-      tenorId: "9T",
-      tenorName: "9 tháng",
-      tenorUnit: "Tháng",
-      tenorValue: 9,
-      days: 270,
+      code: "EUR",
+      name: "Euro",
+      symbol: "€",
+      exchangeRate: 25800,
+      status: "Đang hoạt động",
     },
     {
-      tenorId: "12T",
-      tenorName: "12 tháng",
-      tenorUnit: "Tháng",
-      tenorValue: 12,
-      days: 360,
+      code: "JPY",
+      name: "Japanese Yen",
+      symbol: "¥",
+      exchangeRate: 171,
+      status: "Ngừng hoạt động",
     },
   ];
 
@@ -56,7 +77,7 @@ export const TenorPage = () => {
               title: <Link to="/app/master-data">Danh mục</Link>,
             },
             {
-              title: "Kỳ hạn",
+              title: "Tiền tệ",
             },
           ]}
         />
@@ -75,9 +96,9 @@ export const TenorPage = () => {
         <Pagination showSizeChanger total={5000} pageSize={50} align="center" />
       }
     >
-      <DataTable<Partial<Tenor>>
+      <DataTable<Partial<Currency>>
         columnNoHeader="STT"
-        rowKey="tenorId"
+        rowKey="code"
         columns={columns}
         dataSource={dataSource}
         onEdit={() => {}}

@@ -1,132 +1,73 @@
-import {
-  AlignLeftOutlined,
-  CalendarOutlined,
-  FileOutlined,
-  HomeOutlined,
-  PieChartOutlined,
-  SettingOutlined,
-  UsergroupAddOutlined,
-} from "@ant-design/icons";
-import { MASTER_DATA_CONFIG } from "@constants/app-setting";
+import { APP_MENU } from "@app/configs";
 import { APP_LAYOUT_CONFIG } from "@layouts/main-layout/constants";
 import { Grid, Layout, Menu, type MenuProps } from "antd";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Logo } from "../logo/Logo";
 import styles from "./Sidebar.module.scss";
 const { Sider } = Layout;
 const { useBreakpoint } = Grid;
 export const Sidebar = () => {
-  const items: MenuProps["items"] = [
-    {
-      key: "dashboard",
-      icon: <HomeOutlined />,
-      label: <Link to="/app/dashboard">Dashboard</Link>,
-    },
-    {
-      key: "primary",
-      icon: <AlignLeftOutlined />,
-      label: "Quản lý sơ cấp",
-      children: [
-        {
-          key: "2-1",
-          label: (
-            <Link to="/app/primary/issuance-batch-management">
-              Quản lý lô phát hành
-            </Link>
-          ),
-        },
-        {
-          key: "2-2",
-          label: (
-            <Link to="/app/primary/issuance-approval">Phê duyệt phát hành</Link>
-          ),
-        },
-        {
-          key: "2-3",
-          label: (
-            <Link to="/app/primary/matured-batch-settlement">
-              Tất toán lô đến hạn
-            </Link>
-          ),
-        },
-        {
-          key: "2-4",
-          label: (
-            <Link to="/app/primary/interest-payment-schedule">
-              Lịch trả lãi
-            </Link>
-          ),
-        },
-        {
-          key: "2-5",
-          label: (
-            <Link to="/app/primary/working-day-management">
-              Quản lý ngày làm việc
-            </Link>
-          ),
-        },
-        {
-          key: "2-6",
-          label: (
-            <Link to="/app/primary/primary-purchase-management">
-              Quản lý mua sơ cấp
-            </Link>
-          ),
-        },
-        {
-          key: "2-7",
-          label: (
-            <Link to="/app/primary/primary-sale-management">
-              Quản lý bán sơ cấp
-            </Link>
-          ),
-        },
-        {
-          key: "2-8",
-          label: <Link to="/app/primary/automated-job">Job tự động</Link>,
-        },
-      ],
-    },
-    {
-      key: "secondary",
-      icon: <FileOutlined />,
-      label: "Quản lý thứ cấp",
-    },
-    {
-      key: "master-data",
-      icon: <UsergroupAddOutlined />,
-      label: "Danh mục",
-      children: [
-        {
-          key: "all",
-          label: <Link to="/app/master-data">Tất cả danh mục</Link>,
-        },
-        ...MASTER_DATA_CONFIG.map((item) => ({
-          key: item.key,
-          label: <Link to={`/app/master-data/${item.key}`}>{item.label}</Link>,
-        })),
-      ],
-    },
-    {
-      key: "config",
-      icon: <SettingOutlined />,
-      label: "Cấu hình",
-    },
-    {
-      key: "cron-job",
-      icon: <CalendarOutlined />,
-      label: "Job định kỳ",
-    },
-    {
-      key: "report",
-      icon: <PieChartOutlined />,
-      label: "Báo cáo, phân tích",
-    },
-  ];
-
-  const [collapsed, setCollapsed] = useState(false);
   const screens = useBreakpoint();
+  const items: MenuProps["items"] = useMemo(
+    () =>
+      Object.keys(APP_MENU).map((key) => {
+        const children = APP_MENU[key]?.children
+          ?.filter((child) => child.hidden !== true)
+          ?.map((child) => {
+            return {
+              key: `${APP_MENU[key].url}/${child.url}`,
+              label: (
+                <Link to={`${APP_MENU[key].url}/${child.url}`}>
+                  {child.label}
+                </Link>
+              ),
+            };
+          });
+        return {
+          key: APP_MENU[key].url,
+          icon: APP_MENU[key].icon,
+          label: children?.length ? (
+            APP_MENU[key].label
+          ) : (
+            <Link to={APP_MENU[key].url}>{APP_MENU[key].label}</Link>
+          ),
+          children,
+        };
+      }),
+    []
+  );
+  const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
+  const menuKeys = useMemo<{ open: string[]; selected: string }>(() => {
+    const pathName = location.pathname;
+    const open =
+      items
+        .filter((item) => pathName.includes(`${item?.key}`))
+        ?.map((item) => item?.key?.toString() || "") || [];
+    let selected = pathName;
+    Object.keys(APP_MENU).forEach((key) => {
+      APP_MENU[key]?.children?.forEach((child) => {
+        if (child.url && pathName.includes(child.url)) {
+          selected = `${APP_MENU[key].url}/${child.url}`;
+        }
+      });
+    });
+    return { open, selected };
+  }, [items, location.pathname]);
+  const [openKeys, setOpenKeys] = useState(menuKeys.open || []);
+  const [selectedKeys, setSelectedKeys] = useState([menuKeys.selected]);
+
+  useEffect(() => {
+    setSelectedKeys([menuKeys.selected]);
+    setOpenKeys(menuKeys.open || []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
+
+  const handleOpenChange = (keys: string[]) => {
+    setOpenKeys(keys);
+  };
+
   const handleMenuClick = () => {
     if (!screens.lg) {
       setCollapsed(true);
@@ -150,6 +91,9 @@ export const Sidebar = () => {
         mode="inline"
         items={items}
         className={styles.appMenu}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={handleOpenChange}
         onClick={handleMenuClick}
       />
     </Sider>

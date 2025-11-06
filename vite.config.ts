@@ -10,7 +10,6 @@ const aliases = [
   { find: "@theme", replacement: path.resolve(__dirname, "src/theme") },
   { find: "@routers", replacement: path.resolve(__dirname, "src/routers") },
   { find: "@layouts", replacement: path.resolve(__dirname, "src/layouts") },
-  { find: "@templates", replacement: path.resolve(__dirname, "src/templates") },
   { find: "@constants", replacement: path.resolve(__dirname, "src/constants") },
 ];
 export default defineConfig({

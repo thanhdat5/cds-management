@@ -48,7 +48,10 @@ export default defineConfig([
   },
   // Exclude rule in atom file
   {
-    files: ["src/common/components/button/Button.tsx"],
+    files: [
+      "src/common/components/button/Button.tsx",
+      "src/features/auth/components/auth-button/AuthButton.tsx",
+    ],
     rules: {
       "@/no-restricted-imports": "off",
     },

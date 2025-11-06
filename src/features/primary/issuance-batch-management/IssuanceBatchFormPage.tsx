@@ -1,8 +1,7 @@
-import { SectionTitle, Steps } from "@common/components";
-import { PageFooter } from "@templates/page-footer/PageFooter";
-import { MasterDataPageInner } from "@templates/page-inner/PageInner";
+import { Button, SectionTitle, Steps } from "@common/components";
+import { PageTemplate } from "@common/components/templates";
 import {
-  Button,
+  Breadcrumb,
   Col,
   DatePicker,
   Flex,
@@ -32,31 +31,41 @@ export const IssuanceBatchFormPage = () => {
     return `${end ? `${v}.${end}` : `${v}`}`;
   };
   return (
-    <MasterDataPageInner
-      breadcrumbItems={[
-        {
-          title: (
-            <Link to="/app/master-data/issuance-batch-management">
-              Danh sách đợt phát hành
-            </Link>
-          ),
-        },
-        {
-          title: "Tạo mới",
-        },
-      ]}
+    <PageTemplate
+      stickyHeader
+      footerShadow
+      footerBg="#fff"
+      header={
+        <Breadcrumb
+          items={[
+            {
+              title: <Link to="/app/master-data">Danh mục</Link>,
+            },
+            {
+              title: (
+                <Link to="/app/master-data/issuance-batch-management">
+                  Danh sách đợt phát hành
+                </Link>
+              ),
+            },
+            {
+              title: "Tạo mới đợt phát hành",
+            },
+          ]}
+        />
+      }
       footer={
-        <PageFooter>
-          <Button variant="filled" color="primary">
-            <Link to="/app/master-data/user">Hủy bỏ</Link>
-          </Button>
+        <Flex gap={10}>
+          <Link to="/app/master-data/issuance-batch-management">
+            <Button>Hủy bỏ</Button>
+          </Link>
           <Button type="primary" onClick={handleSave}>
             Lưu thông tin
           </Button>
           <Button type="primary" onClick={handleSave}>
             Lưu và Duyệt
           </Button>
-        </PageFooter>
+        </Flex>
       }
     >
       <Form<Partial<IssuanceBatch>>
@@ -278,6 +287,6 @@ export const IssuanceBatchFormPage = () => {
           </Form.Item>
         </Flex>
       </Form>
-    </MasterDataPageInner>
+    </PageTemplate>
   );
 };

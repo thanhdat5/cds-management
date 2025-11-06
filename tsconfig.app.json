@@ -34,7 +34,6 @@
       "@theme/*": ["theme/*"],
       "@routers/*": ["routers/*"],
       "@layouts/*": ["layouts/*"],
-      "@templates/*": ["templates/*"],
       "@constants/*": ["constants/*"]
     }
   },

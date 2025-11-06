@@ -2,4 +2,4 @@
 export type ButtonType = "default" | "primary" | "secondary" | "text";
 
 // Allowed button sizes (restrict to 'middle' and 'large')
-export type ButtonSize = "middle" | "large";
+export type ButtonSize = "middle" | "large" | "small";

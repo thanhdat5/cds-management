@@ -79,6 +79,7 @@ export const cdsTheme: ThemeConfig = {
       colorPrimary: color.colorPrimary,
       colorBorderSecondary: color.colorBorder,
       lineHeight: 22 / 14,
+      horizontalMargin: "0 0 20px 0",
     },
     Tree: {
       colorBgContainer: color.colorWhite,
@@ -122,6 +123,10 @@ export const cdsTheme: ThemeConfig = {
     Avatar: {
       borderRadiusLG: 12,
       containerSizeSM: 20,
+    },
+    Table: {
+      cellPaddingBlock: 8,
+      cellPaddingInline: 8,
     },
   },
 };

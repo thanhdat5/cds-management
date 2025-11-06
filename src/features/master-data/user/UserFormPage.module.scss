@@ -1,0 +1,14 @@
+.controls {
+  height: 100%;
+  flex-direction: column;
+  @media (max-width: 767px) {
+    flex-direction: row;
+    :global {
+      .ant-btn {
+        .anticon {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}

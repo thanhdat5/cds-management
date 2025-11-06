@@ -1,11 +1,9 @@
-import { DataTable } from "@common/components/data-table/DataTable";
 import {
   AppstoreAddOutlined,
   ArrowRightOutlined,
   CaretDownOutlined,
   DeleteOutlined,
   DownloadOutlined,
-  DownOutlined,
   EditOutlined,
   MoreOutlined,
   PlusOutlined,
@@ -13,10 +11,11 @@ import {
   ReloadOutlined,
   SearchOutlined,
   SettingOutlined,
-  UploadOutlined,
+  UploadOutlined
 } from "@ant-design/icons";
+import { Button, DropdownButton } from "@common/components";
+import { DataTable } from "@common/components/data-table/DataTable";
 import {
-  Button,
   Col,
   Collapse,
   DatePicker,
@@ -32,11 +31,9 @@ import {
   Typography,
 } from "antd";
 import type { ColumnType } from "antd/es/table";
+import dayjs from "dayjs";
 import styles from "./IssuanceBatchPage.module.scss";
 import type { IssuanceBatch } from "./issuanceBatchTypes";
-import dayjs from "dayjs";
-import { Link } from "react-router-dom";
-import { DropdownButton } from "@common/components";
 const formatCurrency = (value?: number) => {
   if (value == null) return "";
   return new Intl.NumberFormat("vi-VN", {

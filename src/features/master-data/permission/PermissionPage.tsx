@@ -1,14 +1,24 @@
-import { DataTable } from "@common/components";
 import {
   DownOutlined,
   MoreOutlined,
-  SettingOutlined
+  PlusOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, Flex, Pagination, Tree } from "antd";
+import { Button, DataTable } from "@common/components";
+import { PageTemplate } from "@common/components/templates";
+import {
+  Avatar,
+  Breadcrumb,
+  Dropdown,
+  Flex,
+  Input,
+  Pagination,
+  Tree,
+} from "antd";
 import type { ColumnType } from "antd/es/table";
-import { MasterDataPageInner } from "../../../templates/page-inner/PageInner";
-import { PageHeader } from "../../../templates/page-header/PageHeader";
+import { Link } from "react-router-dom";
 import type { Permission, PermissionDetail } from "./permissionTypes";
+const { Search } = Input;
 export const PermissionPage = () => {
   const columns: ColumnType<Partial<Permission>>[] = [
     {
@@ -200,19 +210,31 @@ export const PermissionPage = () => {
   ];
 
   return (
-    <MasterDataPageInner
-      breadcrumbItems={[
-        {
-          title: "Người sử dụng",
-        },
-      ]}
+    <PageTemplate
+      stickyHeader
+      stickyFooter
+      bodyStyle={{ paddingTop: 16 }}
       header={
-        <PageHeader
-          showAddButton
-          showSearch
-          keyword=""
-          onKeywordChanged={() => {}}
+        <Breadcrumb
+          items={[
+            {
+              title: <Link to="/app/master-data">Danh mục</Link>,
+            },
+            {
+              title: "Phân quyền",
+            },
+          ]}
         />
+      }
+      subHeader={
+        <Flex gap={24} flex={1}>
+          <Search size="large" placeholder="Tìm kiếm vai trò" />
+          <Link to="create">
+            <Button type="primary" size="large" icon={<PlusOutlined />}>
+              Thêm mới
+            </Button>
+          </Link>
+        </Flex>
       }
       footer={
         <Pagination showSizeChanger total={5000} pageSize={50} align="center" />
@@ -225,6 +247,6 @@ export const PermissionPage = () => {
         rowSelection={{ type: "checkbox" }}
         className="ant-vertical-top"
       />
-    </MasterDataPageInner>
+    </PageTemplate>
   );
 };

@@ -1,5 +1,6 @@
 .pageHeader {
   padding: 16px var(--app-layout-content-px) 10px;
+  background-color: #fff;
   &.sticky {
     position: sticky;
     top: 0;
@@ -12,18 +13,38 @@
       }
     }
   }
+  .mainHeader {
+    min-height: 60px;
+    border-bottom: 0 solid var(--cds-color-border);
+  }
+  .subHeader {
+    padding-top: 16px;
+    width: 100%;
+    border-top: 1px solid var(--cds-color-border);
+  }
 }
 .pageBody {
-  padding: 0 var(--app-layout-content-px);
+  border-top: 0 solid var(--cds-color-border);
+  padding: 0 var(--app-layout-content-px) 16px;
+  flex: 1;
+  background-color: #fff;
 }
 .pageFooter {
-  padding: 16px var(--app-layout-content-px) 10px;
+  padding: 16px var(--app-layout-content-px);
+  background-color: #fff;
   &.sticky {
-    position: sticky;
-    bottom: 0;
-    z-index: 9;
+    @media (min-height: 400px) {
+      position: sticky;
+      bottom: 0;
+      z-index: 9;
+    }
   }
   &.shadow {
     box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.04);
+  }
+  :global {
+    .ant-btn {
+      min-width: 100px;
+    }
   }
 }

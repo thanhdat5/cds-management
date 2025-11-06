@@ -1,8 +1,9 @@
-import { Button, Flex, Table, Tooltip } from "antd";
+import { Flex, Table, Tooltip } from "antd";
 import type { ColumnType } from "antd/es/table";
 import type { TableProps } from "antd/lib";
 import type { MouseEvent } from "react";
 import { memo, useMemo } from "react";
+import { Button } from "../button";
 import styles from "./DataTable.module.scss";
 
 // Props interface (no any)
@@ -92,7 +93,8 @@ const DataTableComponent = <T extends object>({
               <Tooltip title="Chỉnh sửa">
                 <Button
                   size="small"
-                  type="link"
+                  type="text"
+                  style={{ color: "var(--cds-color-primary)" }}
                   onClick={(e) => onEdit(e, record)}
                   icon={<EditIcon />}
                 />
@@ -102,8 +104,8 @@ const DataTableComponent = <T extends object>({
               <Tooltip title="Xóa">
                 <Button
                   size="small"
-                  danger
-                  type="link"
+                  type="text"
+                  style={{ color: "var(--cds-color-error)" }}
                   onClick={(e) => onDelete(e, record)}
                   icon={<DeleteIcon />}
                 />

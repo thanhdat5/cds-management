@@ -61,10 +61,17 @@
       border-radius: 8px;
       font-weight: 500;
       font-size: 16px;
-      line-height: 16px !important;
       min-height: 52px;
       &:not(:last-child) {
         margin-bottom: 4px;
+      }
+      .anticon {
+        font-size: 20px;
+      }
+    }
+    .ant-menu-submenu-open {
+      .ant-menu-submenu-title {
+        color: var(--cds-color-primary);
       }
     }
     .ant-menu-item-selected {

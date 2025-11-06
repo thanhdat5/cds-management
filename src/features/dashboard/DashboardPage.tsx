@@ -28,13 +28,21 @@ export const DashboardPage = () => {
   ];
   return (
     <PageTemplate
+      stickyHeader
       header={
-        <Flex wrap align="start" justify="space-between" gap={16}>
+        <Flex
+          wrap
+          align="start"
+          justify="space-between"
+          gap={16}
+          style={{ width: "100%" }}
+        >
           <Title level={1}>Dashboard</Title>
           <SelectDate />
         </Flex>
       }
-      headerBg="var(--cds-color-bg-base)"
+      headerStyle={{ backgroundColor: "var(--cds-color-bg-base)" }}
+      bodyStyle={{ backgroundColor: "var(--cds-color-bg-base)" }}
     >
       <Flex vertical gap={30} className={styles.inner}>
         <Row gutter={rowGutter}>
